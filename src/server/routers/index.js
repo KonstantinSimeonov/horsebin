@@ -6,7 +6,11 @@ const fs = require('fs'),
 module.exports = function (server) {
     fs.readdirSync(__dirname)
       .filter(fileName => fileName.indexOf('-router.js') !== -1)
-      .forEach(routerFileName => require(routerFileName).call(null, server));
+      .forEach(function (routerName) {
+          const router = require(path.join(__dirname, '/' + routerName));
+
+          router(server);
+      });
 
     const errorsRouter = require(path.join(__dirname, './errors'));
 

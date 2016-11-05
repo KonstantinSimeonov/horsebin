@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>npaste</title>
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <script src="./public/js/jquery.min.js"></script>
+    <script src="./public/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>works</h1>
+    </header>
+    <nav>nav</nav>
+    <main><a href="/home" class="btn btn-danger">GOsho</a></main>
+    <footer>footer</footer>
+</body>
+</html>
