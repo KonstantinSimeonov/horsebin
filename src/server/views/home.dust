@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta keywords="paste code open source share">
     <title>npaste</title>
     <link rel="stylesheet" href="./public/css/bootstrap.min.css">
     <script src="./public/js/jquery.min.js"></script>
     <script src="./public/js/bootstrap.min.js"></script>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+        }
+
+
+    </style>
 </head>
+
 <body>
     <header>
         <h1>works</h1>
     </header>
-    <nav>nav</nav>
-    <main><a href="/home" class="btn btn-danger">GOsho</a></main>
-    <footer>footer</footer>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/home" class="navbar-brand">NPaste</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="btn btn-success" id="create-paste-btn" href="/pastes">Create paste</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/my-pastes">My Pastes</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">Guest <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li><a href="/sign-up">Sign up</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/sign-in">Sign in</a></li>
+                            <li><a href="/sign-in/github">Sign in with GitHub</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>Form for new paste, textbox, input fields go here
+
+        <form action="/pastes" method="POST">
+            <input type="text" name="lang">
+            <textarea name="content" cols="30" rows="10"></textarea>
+            <input type="submit" value="Create">
+        </form>
+    </main>
+    <aside>
+        latest pastes go here
+    </aside>
+    <footer>
+        Footer stuff here
+    </footer>
 </body>
+
 </html>
