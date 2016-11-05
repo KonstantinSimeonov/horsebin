@@ -1,0 +1,66 @@
+<form class="form-horizontal">
+    <fieldset>
+        <legend>New paste</legend>
+        <div class="form-group">
+            <label for="paste-name" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input class="form-control" id="paste-name" placeholder="Paste name" type="text" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Language</label>
+            <div class="col-lg-10">
+                <!-- Should be dynamic -->
+                <select class="form-control">
+                            <option selected>--- Choose a Language ---</option>
+                            <option>JavaScript</option>
+                            <option>Haskell</option>
+                            <option>Scala</option>
+                            <option>CSS</option>
+                            <option>C++</option>
+                        </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="textArea" class="col-lg-2 control-label">Content</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Visibility</label>
+            <div class="col-lg-10">
+                <div class="radio">
+                    <label>
+                                <input name="visibility" value="public" checked type="radio">
+                                Public
+                            </label>
+                </div>
+                <div class="radio">
+                    <label>
+                                <input name="visibility" value="unlisted" type="radio">
+                                Unlisted
+                            </label>
+                </div>
+                <div class="radio">
+                    <label>
+                                <input name="visibility" value="unlisted" type="radio">
+                                Private(with password)
+                            </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="paste-pswd" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10">
+                <input class="form-control" id="paste-pswd" placeholder="Password" type="password" name="pswd">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button> &nbsp; &nbsp;
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
