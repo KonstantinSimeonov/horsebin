@@ -2,6 +2,6 @@
 
 module.exports = {
     index(req, res) {
-        res.status(200).render('home');
+        res.status(200).render('home', { user: req.user });
     }
 }

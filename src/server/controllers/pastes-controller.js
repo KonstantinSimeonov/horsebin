@@ -7,7 +7,7 @@ module.exports = {
         pastesServices
             .getById(req.params.pasteId)
             .then(d => { console.log(d); res.status(200).json(d); })
-            .catch(err => console.log(err, res.status(500).send('hui')))
+            .catch(err => console.log(err, res.status(500).send('error')))
     },
     create(req, res) {
         // TODO: validation
