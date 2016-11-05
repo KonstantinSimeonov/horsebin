@@ -1,0 +1,8 @@
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+body {
+    padding-top: 75px;
+}
