@@ -2,6 +2,6 @@
 
 module.exports = {
     getRegistrationForm(req, res) {
-        res.status(200).render('sign-up');
+        res.status(200).render('_sign-up', { user: req.user });
     }
 }

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta keywords="paste code open source share">
     <title>npaste</title>
-    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./public/css/custom.css">
-    <script src="./public/js/jquery.min.js"></script>
-    <script src="./public/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/custom.css">
+    <script src="/public/js/jquery.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
     
 </head>
 
@@ -52,7 +52,10 @@
     </nav>
     <main class="container col-lg-8 pull-left">Form for new paste, textbox, input fields go here
 
-        {>"_create-paste":user/}
+       
+        {+mainContent}
+        you're stupid'
+        {/mainContent}
         
     </main>
 

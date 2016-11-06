@@ -1,0 +1,27 @@
+{>_layout:user/}
+{<mainContent}
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Fill in your username and passwod</legend>
+    <div class="form-group">
+      <label for="username" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="username" placeholder="Username" type="text" name="username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pswd" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input class="form-control" id="pswd" placeholder="Password" type="password" name="pswd">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Clear</button>
+        &nbsp; &nbsp;
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+{/mainContent}

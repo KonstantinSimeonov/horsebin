@@ -9,6 +9,9 @@ module.exports = {
             .then(d => { console.log(d); res.status(200).json(d); })
             .catch(err => console.log(err, res.status(500).send('error')))
     },
+    getCreate(req, res) {
+        res.status(200).render('_create-paste', { user: req.user })
+    },
     create(req, res) {
         // TODO: validation
         pastesServices
