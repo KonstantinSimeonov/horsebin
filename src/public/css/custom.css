@@ -5,6 +5,7 @@ footer {
 
 body {
     padding-top: 75px;
+    padding-left: 25px;
 }
 
 textarea {
@@ -13,4 +14,17 @@ textarea {
 
 time {
     font-style: italic;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
+}
+
+.paste-content {
+    display: inline-block;
+    min-height: 25em;
+    max-height: 30em;
+    width: 100%;
+    overflow-y: scroll;
 }

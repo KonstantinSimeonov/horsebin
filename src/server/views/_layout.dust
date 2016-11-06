@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/my-pastes">My Pastes</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {#user}
                             {user.username}
                         {:else}
