@@ -51,28 +51,30 @@
             </div>
         </div>
     </nav>
-    <main class="container col-lg-8 pull-left">
+    <section id="container">
+        <main class="container col-lg-8 pull-left">
         {+mainContent/}
-    </main>
+        </main>
 
-    <aside class="container col-md-3 pull-right">
-        <ul class="list-group table-of-contents">
-            {#mostRecentPastes}
-                <li class="list-group-item">
-                    {#name}
-                        <a class="text-success" href="/pastes/{_id}/details">{name}</a>
-                    {/name}
-                    {#lang}
-                        <p class="text-warning">{lang}</p>
-                    {/lang}
-                    <time>{dateCreated}</time>
-                </li>
-            {/mostRecentPastes}
-        </ul>
-    </aside>
-    <footer>
-        Footer stuff here
-    </footer>
+        <aside class="container col-md-3 pull-right">
+            <ul class="list-group table-of-contents">
+                {#mostRecentPastes}
+                    <li class="list-group-item">
+                        {#name}
+                            <a class="text-success" href="/pastes/{_id}/details">{name}</a>
+                        {/name}
+                        {#lang}
+                            <p class="text-warning">{lang}</p>
+                        {/lang}
+                        <time>{dateCreated}</time>
+                    </li>
+                {/mostRecentPastes}
+            </ul>
+        </aside>
+        <footer>
+            Footer stuff here
+        </footer>
+    </section id="container">
     {+scripts/}
 </body>
 

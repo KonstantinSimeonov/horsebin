@@ -1,13 +1,17 @@
 {>_layout/}
 
 {<mainContent}
-<article>
+<article id="paste-details">
     <blockquote>
         <summary>
-            <p>{paste.name}</p>
+            <p class="paste-name">{paste.name}</p>
             <small>{paste.lang}, posted on <time datetime="{paste.dateCreated}">{paste.dateCreated}</time></small>
         </summary>
     </blockquote>
+    <ul class="pager">
+        <li class="next"><a id="clone-btn" href="#">clone</a></li>
+        <li class="next"><a id="fetch-btn" href="#">fetch as file</a></li>
+    </ul>
     <pre>
         <code class="paste-content language-{paste.lang}">
             {paste.content}
@@ -24,4 +28,6 @@
 {<scripts}
 <script src="/public/js/prism.js"></script>
 <script src="/public/js/prism-haskell.min.js"></script>
+<script src="/public/js/copy-to-clipboard.js"></script>
+<script src="/public/js/fetch-as-file.js"></script>
 {/scripts}
