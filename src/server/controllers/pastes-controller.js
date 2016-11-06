@@ -6,7 +6,8 @@ module.exports = {
     byId(req, res) {
         pastesServices
             .getById(req.params.pasteId)
-            .then(d => { console.log(d); res.status(200).json(d); })
+            //.then(p => res.status(200).json(p))
+            .then(paste =>res.status(200).render('_paste-details', { user: req.user, paste: paste }))
             .catch(err => console.log(err, res.status(500).send('error')))
     },
     getCreate(req, res) {

@@ -6,3 +6,7 @@ footer {
 body {
     padding-top: 75px;
 }
+
+textarea {
+    resize: none;
+}

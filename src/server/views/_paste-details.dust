@@ -1,0 +1,19 @@
+{>_layout/}
+
+{<mainContent}
+<pre>
+    <code class="paste-content language-{paste.lang}">
+        {paste.content}
+    </code>
+</pre>
+{/mainContent}
+
+{<styles}
+<link rel="stylesheet" href="/public/css/prism.css">
+<link rel="stylesheet" href="/public/css/prism-dark.css">
+{/styles}
+
+{<scripts}
+<script src="/public/js/prism.js"></script>
+<script src="/public/js/prism-haskell.min.js"></script>
+{/scripts}
