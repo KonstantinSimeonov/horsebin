@@ -1,6 +1,6 @@
 {>_layout:user/}
 {<mainContent}
-<form class="form-horizontal" action="/sign-up" method="POST">
+<form class="form-horizontal col-lg-7" action="/sign-up" method="POST">
   <fieldset>
     <legend>Fill in your username and passwod</legend>
     <div class="form-group">

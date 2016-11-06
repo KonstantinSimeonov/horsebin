@@ -19,6 +19,9 @@ server.set('view engine', 'dust');
 server.set('view options', { layout: false });
 server.use('/public', express.static(path.join(__dirname, '../public')));
 
+// config auth
+require('./server-config/passport')(server);
+
 /* config end */
 
 require('./routers')(server);

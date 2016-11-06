@@ -1,7 +1,7 @@
 'use strict';
 
 const mongo = require('mongodb'),
-    connection = mongo.MongoClient.connect('mongodb://localhost:27017/npaste-db');
+    connection = require('./mongo-connection');
 
 const CACHE = Object.create(null);
 
@@ -29,6 +29,7 @@ function mostRecentNPastes(n) {
                                         .then(function (data) {
                                             CACHE.mostRecent = data;
                                             CACHE.expirationTime = new Date().getTime() + 1000 * 30;
+                                            return data;
                                         }));
 }
 
