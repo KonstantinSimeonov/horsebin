@@ -4,7 +4,11 @@ const usersServices = require('../data/users-services');
 
 module.exports = {
     getRegistrationForm(req, res) {
-        res.status(200).render('_sign-up', { user: req.user });
+        res.status(200).render('_sign-up', { 
+            formLegend: 'Fill in you username and password',
+            formAction: '/sign-up',
+            submitBtnMsg: 'Sign up'
+        });
     },
     register(req, res) {
         console.log(req.body);
@@ -15,6 +19,13 @@ module.exports = {
         .catch(function (err) {
             console.log(err);
             res.json(err);
+        });
+    },
+    signIn(req, res) {
+        res.status(200).render('_sign-up', { 
+            formLegend: 'Fill in you username and password',
+            formAction: '/sign-in',
+            submitBtnMsg: 'Sign in'
         });
     }
 }

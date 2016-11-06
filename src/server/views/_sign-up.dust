@@ -1,8 +1,8 @@
-{>_layout:user/}
+{>_layout/}
 {<mainContent}
-<form class="form-horizontal col-lg-7" action="/sign-up" method="POST">
+<form class="form-horizontal col-lg-7" action="{formAction}" method="POST">
   <fieldset>
-    <legend>Fill in your username and passwod</legend>
+    <legend>{formLegend}</legend>
     <div class="form-group">
       <label for="username" class="col-lg-2 control-label">Username</label>
       <div class="col-lg-10">
@@ -12,14 +12,14 @@
     <div class="form-group">
       <label for="pswd" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-10">
-        <input class="form-control" id="pswd" placeholder="Password" type="password" name="pswd">
+        <input class="form-control" id="pswd" placeholder="Password" type="password" name="password">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Clear</button>
         &nbsp; &nbsp;
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="btn btn-primary">{submitBtnMsg}</button>
       </div>
     </div>
   </fieldset>

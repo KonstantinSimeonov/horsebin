@@ -3,7 +3,12 @@
 const passport = require('passport'),
     LocalPassport = require('passport-local'),
     session = require('express-session'),
-    users = require('../data/users-services');
+    users = require('../data/users-services'),
+    encrypt = require('../utils/encrypt');
+
+function authenticate(user, pswd) {
+    return encrypt.hashPassword(user.salt, pswd) === user.passHash;
+}
 
 module.exports = function (server) {
         
@@ -19,12 +24,11 @@ module.exports = function (server) {
         users
             .byUsername(username)
             .then(function (dbUser) {
-                if (dbUser && dbUser.authenticate(password)) {
+                if (dbUser && authenticate(dbUser, password)) {
                     return done(null, dbUser);
                 }
-                else {
-                    return done(null, false);
-                }
+                
+                return done(null, false);
             }, function (error) {
                 console.log(error);
                 done(error, false);
