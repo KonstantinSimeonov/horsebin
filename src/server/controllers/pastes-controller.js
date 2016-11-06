@@ -32,6 +32,17 @@ module.exports = {
     },
     create(req, res) {
         // TODO: validation
+
+        const paste = req.body;
+
+        if(!paste.pswd) {
+            delete paste.pswd;
+        }
+
+        if(req.user) {
+            paste.user_id = req.user._id;
+        }
+
         pastesServices
             .createPaste(req.body)
             .then(function (dbRes) {
@@ -40,5 +51,13 @@ module.exports = {
                 res.redirect(`/pastes/${paste._id}/details`);
             })
             .catch(d => { console.log(d); res.json(d) })
+    },
+    byUser(req, res) {
+        const user_id = req.user._id;
+
+        pastesServices
+            .pastesByUser(user_id)
+            .then(pastes => res.status(200).json(pastes))
+            //.catch(err => console.log(err), res.redirect(req.get('referer')));
     }
 }

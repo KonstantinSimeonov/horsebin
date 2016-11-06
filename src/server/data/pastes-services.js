@@ -33,8 +33,17 @@ function mostRecentNPastes(n) {
                                         }));
 }
 
+function pastesByUser(user_id) {
+    // TODO: pagination
+    return connection.then(db => db.collection('pastes')
+                                        .find({ user_id })
+                                        .sort({ dateCreated: -1 })
+                                        .toArray());
+}
+
 module.exports = {
     getById,
     createPaste,
-    mostRecentNPastes
+    mostRecentNPastes,
+    pastesByUser
 }

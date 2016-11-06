@@ -20,8 +20,6 @@ module.exports = {
                                                 .shift())
                                     .filter((x, i) => i & 1);
 
-        console.log(languageNames);
-
         cachedNames = languageNames;
 
         return cachedNames;
