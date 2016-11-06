@@ -1,4 +1,4 @@
-{>_layout:user/}
+{>_layout/}
 {<mainContent}
 <form class="form-horizontal" action="/pastes/create" method="POST">
     <fieldset>
@@ -15,11 +15,14 @@
                 <!-- Should be dynamic -->
                 <select class="form-control" name="lang">
                             <option selected>--- Choose a Language ---</option>
-                            <option>JavaScript</option>
+                            <!--<option>JavaScript</option>
                             <option>Haskell</option>
                             <option>Scala</option>
                             <option>CSS</option>
-                            <option>C++</option>
+                            <option>C++</option>-->
+                            {#langNames}
+                                <option>{.}</option>
+                            {/langNames}
                         </select>
             </div>
         </div>

@@ -1,6 +1,7 @@
 'use strict';
 
-const pastesServices = require('../data/pastes-services');
+const pastesServices = require('../data/pastes-services'),
+    langServices = require('../data/languages');
 
 module.exports = {
     byId(req, res) {
@@ -24,7 +25,10 @@ module.exports = {
             .catch(err => console.log(err))
     },
     getCreate(req, res) {
-        res.status(200).render('_create-paste', { user: req.user })
+
+        const languageNames = langServices.getLanguageNamesForDropdown();
+
+        res.status(200).render('_create-paste', { user: req.user, langNames: languageNames });
     },
     create(req, res) {
         // TODO: validation
