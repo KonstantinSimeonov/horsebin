@@ -4,16 +4,23 @@ const pastesServices = require('../data/pastes-services');
 
 module.exports = {
     byId(req, res) {
-        pastesServices
-            .getById(req.params.pasteId)
-            //.then(p => res.status(200).json(p))
-            .then(function (paste){
-                console.log(paste.dateCreated);
-                var t = new Date(paste.dateCreated);
-                paste.dateCreated = t.toLocaleString('en');
-                console.log(paste.dateCreated);
-                res.status(200).render('_paste-details', { user: req.user, paste: paste });
-            })
+        Promise.all([
+            pastesServices.getById(req.params.pasteId),
+            pastesServices.mostRecentNPastes(5)
+        ]).then(function (results) {
+            const paste = results[0];
+            paste.dateCreated = new Date(paste.dateCreated).toLocaleString('en');
+
+            const mostRecentPastes = results[1];
+
+            mostRecentPastes.forEach(p => p.dateCreated = new Date(p.dateCreated).toLocaleString('en'));
+
+            res.status(200).render('_paste-details', {
+                user: req.user,
+                paste: paste,
+                mostRecentPastes: mostRecentPastes
+            });
+        })
             .catch(err => console.log(err))
     },
     getCreate(req, res) {
@@ -28,6 +35,6 @@ module.exports = {
 
                 res.redirect(`/pastes/${paste._id}/details`);
             })
-            .catch(d => {console.log(d); res.json(d)})
+            .catch(d => { console.log(d); res.json(d) })
     }
 }

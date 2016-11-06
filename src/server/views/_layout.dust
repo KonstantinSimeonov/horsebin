@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="btn btn-success" id="create-paste-btn" href="/pastes">Create paste</a>
+                        <a class="btn btn-success" id="create-paste-btn" href="/pastes/create">Create paste</a>
                     </li>
                 </ul>
 
@@ -56,7 +56,19 @@
     </main>
 
     <aside class="container col-md-3 pull-right">
-        latest pastes go here
+        <ul class="list-group table-of-contents">
+            {#mostRecentPastes}
+                <li class="list-group-item">
+                    {#name}
+                        <a class="text-success" href="/pastes/{_id}/details">{name}</a>
+                    {/name}
+                    {#lang}
+                        <p class="text-warning">{lang}</p>
+                    {/lang}
+                    <time>{dateCreated}</time>
+                </li>
+            {/mostRecentPastes}
+        </ul>
     </aside>
     <footer>
         Footer stuff here

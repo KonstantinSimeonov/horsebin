@@ -14,7 +14,16 @@ function createPaste(paste) {
     return connection.then(db => db.collection('pastes').insert(paste));
 }
 
+function mostRecentNPastes(n) {
+    return connection.then(db => db.collection('pastes')
+                                        .find({ visibility: 'public' })
+                                        .sort({ dateCreated: -1 })
+                                        .limit(n)
+                                        .toArray())
+}
+
 module.exports = {
     getById,
-    createPaste
+    createPaste,
+    mostRecentNPastes
 }
