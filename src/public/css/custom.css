@@ -10,3 +10,7 @@ body {
 textarea {
     resize: none;
 }
+
+time {
+    font-style: italic;
+}

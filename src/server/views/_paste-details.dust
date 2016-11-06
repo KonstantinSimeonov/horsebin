@@ -1,16 +1,24 @@
 {>_layout/}
 
 {<mainContent}
-<pre>
-    <code class="paste-content language-{paste.lang}">
-        {paste.content}
-    </code>
-</pre>
+<article>
+    <blockquote>
+        <summary>
+            <p>{paste.name}</p>
+            <small>{paste.lang}, posted on <time>{paste.dateCreated}</time></small>
+        </summary>
+    </blockquote>
+    <pre>
+        <code class="paste-content language-{paste.lang}">
+            {paste.content}
+        </code>
+    </pre>
+</article>
 {/mainContent}
 
 {<styles}
 <link rel="stylesheet" href="/public/css/prism.css">
-<link rel="stylesheet" href="/public/css/prism-dark.css">
+<link rel="stylesheet" href="/public/css/prism-solarizedlight.css">
 {/styles}
 
 {<scripts}

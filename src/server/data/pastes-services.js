@@ -9,7 +9,7 @@ function getById(id) {
 }
 
 function createPaste(paste) {
-    paste.dateCreate = new Date().getTime();
+    paste.dateCreated = new Date().getTime();
     
     return connection.then(db => db.collection('pastes').insert(paste));
 }

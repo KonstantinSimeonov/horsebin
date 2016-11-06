@@ -51,13 +51,8 @@
             </div>
         </div>
     </nav>
-    <main class="container col-lg-8 pull-left">Form for new paste, textbox, input fields go here
-
-       
-        {+mainContent}
-        you're stupid'
-        {/mainContent}
-        
+    <main class="container col-lg-8 pull-left">
+        {+mainContent/}
     </main>
 
     <aside class="container col-md-3 pull-right">
