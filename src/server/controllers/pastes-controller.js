@@ -57,7 +57,9 @@ module.exports = {
 
         pastesServices
             .pastesByUser(user_id)
-            .then(pastes => res.status(200).json(pastes))
+            .then(pastes => {
+                pastes.status(200).json(pastes);
+            })
             .catch(error => {
                 console.log(error);
                 res.redirect(500, '/error');

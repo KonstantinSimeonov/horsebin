@@ -39,6 +39,7 @@
                         <ul class="dropdown-menu" aria-labelledby="themes">
                             {#user}
                                 <li><a href="/profile">Profile</a></li>
+                                <li><a href="/profile/settings">Profile</a></li>
                             {:else}
                                 <li><a href="/sign-up">Sign up</a></li>
                             {/user}

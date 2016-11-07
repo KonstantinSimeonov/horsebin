@@ -1,6 +1,7 @@
 {>_layout/}
+
 {<mainContent}
-<form class="form-horizontal" action="/pastes/create" method="POST">
+<form class="form-horizontal bs-component" action="/pastes/create" method="POST">
     <fieldset>
         <legend>New paste</legend>
         <div class="form-group">
@@ -26,7 +27,7 @@
                 <textarea class="form-control" rows="5" id="textArea" name="content"></textarea>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="visibility-controls">
             <label class="col-lg-2 control-label">Visibility</label>
             <div class="col-lg-10">
                 <div class="radio">
@@ -43,16 +44,21 @@
                 </div>
                 <div class="radio">
                     <label>
-                                <input name="visibility" value="unlisted" type="radio">
-                                Private(with password)
-                            </label>
+                        <input name="visibility" value="unlisted" type="radio" id="private-btn">
+                        Private(with password)
+                    </label>
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="paste-pswd" class="col-lg-2 control-label">Password</label>
-            <div class="col-lg-10">
+        <div class="form-group" id="password-controls">
+            <!-- FIX THIS(p.s. css sucks) -->
+            <label for="paste-pswd" class="col-lg-2 control-label" style="margin-right: 1em">Password</label>
+            <div class="input-group">
+                <span class="input-group-addon">&#128274;</span>
                 <input class="form-control" id="paste-pswd" placeholder="Password" type="password" name="pswd">
+                <span class="input-group-btn">
+                <button id="reveal-btn" class="btn btn-default" type="button">Reveal</button>
+                </span>
             </div>
         </div>
         <div class="form-group">
@@ -64,3 +70,7 @@
     </fieldset>
 </form>
 {/mainContent}
+
+{<scripts}
+<script src="/public/js/create-paste.js"></script>
+{/scripts}

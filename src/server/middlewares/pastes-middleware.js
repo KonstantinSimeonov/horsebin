@@ -22,6 +22,7 @@ module.exports = {
                 .mostRecentNPastes(n)
                 .then(pastes => {
                     req.mostRecent = pastes;
+
                     next();
                 })
                 .catch(error => {
