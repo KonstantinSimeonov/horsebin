@@ -12,14 +12,8 @@
         <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Language</label>
             <div class="col-lg-10">
-                <!-- Should be dynamic -->
                 <select class="form-control" name="lang">
                             <option selected>--- Choose a Language ---</option>
-                            <!--<option>JavaScript</option>
-                            <option>Haskell</option>
-                            <option>Scala</option>
-                            <option>CSS</option>
-                            <option>C++</option>-->
                             {#langNames}
                                 <option>{.}</option>
                             {/langNames}

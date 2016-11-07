@@ -27,8 +27,8 @@ module.exports = {
     getCreate(req, res) {
 
         const languageNames = langServices.getLanguageNamesForDropdown();
-
-        res.status(200).render('_create-paste', { user: req.user, langNames: languageNames });
+        console.log(req.mostRecent);
+        res.status(200).render('_create-paste', { user: req.user, langNames: languageNames, mostRecentPastes: req.mostRecent });
     },
     create(req, res) {
         // TODO: validation
