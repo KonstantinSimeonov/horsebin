@@ -12,7 +12,7 @@ module.exports = {
 
         mostRecentPastes.forEach(p => p.dateCreated = new Date(p.dateCreated).toLocaleString('en'));
 
-        res.status(200).render('_paste-details', {
+        res.status(200).render('paste-details', {
             user: req.user,
             paste: paste,
             mostRecentPastes: mostRecentPastes
@@ -21,7 +21,7 @@ module.exports = {
     getCreate(req, res) {
         const languageNames = langServices.getLanguageNamesForDropdown();
 
-        res.status(200).render('_create-paste', {
+        res.status(200).render('create-paste', {
             user: req.user,
             langNames: languageNames,
             mostRecentPastes: req.mostRecent
@@ -58,7 +58,7 @@ module.exports = {
         pastesServices
             .pastesByUser(user_id)
             .then(pastes => {
-                pastes.status(200).json(pastes);
+                res.status(200).json(pastes);
             })
             .catch(error => {
                 console.log(error);

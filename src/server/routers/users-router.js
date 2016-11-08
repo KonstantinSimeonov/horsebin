@@ -5,6 +5,8 @@ const usersController = require('../controllers/users-controller'),
 
 module.exports = function (server) {
     server
+        .get('/profile', usersController.getProfile)
+        .post('/profile/settings', usersController.updateSettings)
         .get('/sign-up', usersController.getRegistrationForm)
         .post('/sign-up', usersController.register)
         .get('/sign-in', usersController.signIn)

@@ -20,9 +20,13 @@ module.exports = {
             username: user.username,
             salt: salt,
             passHash: encrypt.hashPassword(salt, user.password),
-            roles: ['standard']
+            roles: ['standard'],
+            dateRegistered: new Date().getTime()
         };
 
         return connection.then(db => db.collection('users').insert(userToAdd));
+    },
+    updateUserSettings(_id, settings) {
+        return connection.then(db => db.collection('users').update({ _id }, { $set: { settings } }));
     }
 }

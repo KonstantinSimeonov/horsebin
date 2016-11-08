@@ -1,0 +1,33 @@
+{>_layout/}
+
+{<mainContent}
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#home" data-toggle="tab">Profile info</a></li>
+  <li><a href="#profile" data-toggle="tab">Settings</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="home">
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+  </div>
+  <div class="tab-pane fade" id="profile">
+    <h4>Choose a theme for your pastes</h4>
+    <div class="btn-group">
+      <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        dark
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dd-paste-theme" href="#" data-theme="solarizedlight">Solarized light</a></li>
+        <li><a class="dd-paste-theme" href="#" data-theme="coy">Coy</a></li>
+        <li><a class="dd-paste-theme" href="#" data-theme="tomorrow">Tomorrow</a></li>
+       </ul>
+    </div>
+  </div>
+</div>
+
+{/mainContent}
+
+{<scripts}
+<script src="/public/js/profile.js"></script>
+{/scripts}
