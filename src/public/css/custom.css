@@ -7,8 +7,8 @@ footer {
 
 body {
     padding-top: 75px;
-    padding-left: 25px;
-    padding-bottom: 50px;
+    /* padding-left: 25px;
+    padding-bottom: 50px;*/
     height: 100%;
 }
 
@@ -47,3 +47,25 @@ pre {
 .vertical-offset-5 {
     margin-top: 5em;
 }
+
+html, body {
+  height: 100%;
+}
+
+#container {
+  min-height: 100%;
+}
+
+#main-content {
+  overflow: auto;
+  padding-bottom: 150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear: both;
+  padding-top: 20px;
+  text-align: center;
+} 

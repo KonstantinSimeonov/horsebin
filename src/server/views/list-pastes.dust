@@ -1,0 +1,44 @@
+{>_layout/}
+
+{<mainContent}
+
+<div class="list-group">
+{#pastes}
+    <a href="/pastes/{_id}/details" class="list-group-item">
+        <h4 class="list-group-item-heading">{name}</h4>
+        <pre class="list-group-item-text">
+            <code class="language-{paste.lang}">
+                {content}...
+            </code>
+        </pre>
+    </a>
+        <br>
+{/pastes}
+
+
+  
+  <!--<a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">List group item heading</h4>
+    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+  </a>-->
+</div>
+
+{/mainContent}
+
+{<styles}
+
+<link rel="stylesheet" href="/public/css/prism-{user.settings.theme}.css">
+
+{/styles}
+
+{<scripts}
+
+<script src="/public/js/prism.js"></script>
+
+{#pastes}
+
+<script src="/public/js/prism-{lang}.js"></script>
+
+{/pastes}
+
+{/scripts}

@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="textArea" class="col-lg-2 control-label">Content</label>
             <div class="col-lg-10">
-                <textarea class="form-control" rows="5" id="textArea" name="content"></textarea>
+                <textarea class="form-control" rows="15" id="textArea" name="content"></textarea>
             </div>
         </div>
         <div class="form-group" id="visibility-controls">
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" id="password-controls">
+        <div class="form-group collapse" id="password-controls">
             <!-- FIX THIS(p.s. css sucks) -->
             <label for="paste-pswd" class="col-lg-2 control-label" style="margin-right: 1em">Password</label>
             <div class="input-group">
