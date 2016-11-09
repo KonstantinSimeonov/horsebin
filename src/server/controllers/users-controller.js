@@ -36,6 +36,7 @@ module.exports = {
         res.status(403).render('error');
     },
     updateSettings(req, res) {
+        res.status(500).json({ msg: 'losho!' });
         const settings = req.body.settings;
 
         usersServices.updateUserSettings(req.user._id, settings).then(result => res.redirect('/home'));

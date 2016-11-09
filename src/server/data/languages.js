@@ -18,7 +18,7 @@ module.exports = {
                                                 .pop()
                                                 .split('.')
                                                 .shift())
-                                    .filter((x, i) => i & 1);
+                                    .filter((_, i) => i & 1);
 
         cachedNames = languageNames;
 

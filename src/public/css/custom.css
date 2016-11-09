@@ -32,3 +32,18 @@ pre {
     width: 100%;
     overflow-y: scroll;
 }
+
+#notification-container {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    z-index: 9999;
+}
+
+.vertical-offset-2 {
+    margin-top: 2em;
+}
+
+.vertical-offset-5 {
+    margin-top: 5em;
+}

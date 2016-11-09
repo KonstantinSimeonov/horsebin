@@ -5,7 +5,6 @@ $(function () {
         'haskell': 'hs'
     };
 
-
     const $fetchBtn = $('#fetch-btn'),
         $container = $('#paste-details');
 
