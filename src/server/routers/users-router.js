@@ -5,11 +5,11 @@ const usersController = require('../controllers/users-controller'),
 
 module.exports = function (server) {
     server
-        .get('/profile', usersController.getProfile)
-        .post('/profile/settings', usersController.updateSettings)
+        .get('/profile', authentication.isAuthenticated, usersController.getProfile)
+        .post('/profile/settings', authentication.isAuthenticated, usersController.updateSettings)
         .get('/sign-up', usersController.getRegistrationForm)
         .post('/sign-up', usersController.register)
         .get('/sign-in', usersController.signIn)
         .post('/sign-in', authentication.login)
-        .post('/sign-out', authentication.logout);
+        .post('/sign-out', authentication.isAuthenticated, authentication.logout);
 }

@@ -47,9 +47,12 @@
         <span class="col-xs-offset-2 caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dd-paste-theme" href="#" data-theme="solarizedlight">Solarized light</a></li>
+        {#themes}
+          <li><a class="dd-paste-theme" href="#" data-theme="{.}">{.}</a></li>
+        {/themes}
+        <!--<li><a class="dd-paste-theme" href="#" data-theme="solarizedlight">Solarized light</a></li>
         <li><a class="dd-paste-theme" href="#" data-theme="coy">Coy</a></li>
-        <li><a class="dd-paste-theme" href="#" data-theme="tomorrow">Tomorrow</a></li>
+        <li><a class="dd-paste-theme" href="#" data-theme="tomorrow">Tomorrow</a></li>-->
        </ul>
     </div>
   </div>

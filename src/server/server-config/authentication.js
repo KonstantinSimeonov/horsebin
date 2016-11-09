@@ -34,7 +34,7 @@ module.exports = {
     },
     logout(req, res, next) {
         req.logout();
-        res.redirect('/sign-out');
+        res.redirect('/home');
         //res.end();
     },
     isAuthenticated(req, res, next) {

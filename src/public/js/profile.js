@@ -4,12 +4,14 @@ $(function () {
         $dropDownBtnText = $('#dd-btn-theme-text'),
         $notificationContainer = $('#notification-container');
 
+    let selectedTheme;
+
     function toCapitalCase(str) {
         return str[0].toUpperCase() + str.slice(1);
     }
 
     // TODO: refactor!
-    function sucess() {
+    function success() {
         $dropDownBtnText.text(toCapitalCase(selectedTheme));
         
         $notificationContainer
@@ -29,12 +31,12 @@ $(function () {
     }
 
     // TODO: refactor!
-    function error() {
+    function error(err) {
         {
             $notificationContainer
                 .html(`<div class="alert alert-dismissible alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Error :(</strong>
+  <strong>${err}</strong>
 </div>`);
             // set fade out after 3 secs
             setTimeout(() => {
@@ -49,14 +51,14 @@ $(function () {
     }
 
     $themeButtons.on('click', function (ev) {
-        const selectedTheme = $(ev.target).attr('data-theme');
+        selectedTheme = $(ev.target).attr('data-theme');
         $.ajax({
             url: '/profile/settings',
             contentType: 'application/json',
             method: 'POST',
             data: JSON.stringify({ settings: { theme: selectedTheme } }),
-            sucess,
-            error
+            error,
+            success
         });
     });
 });
