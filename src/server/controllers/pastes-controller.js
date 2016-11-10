@@ -72,6 +72,22 @@ module.exports = {
             .then(pastes => {
                 const shortenedPastes = pastes.map(p => {
                     p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
+                    const ago = new Date(new Date().getTime() - p.dateCreated);
+                    
+                    p.dateCreated = '';
+
+                    if(ago.getHours() > 0) {
+                        p.dateCreated += ago.getHours() + ' hours';
+                    }
+
+                    if(ago.getMinutes() > 0) {
+                        if(p.dateCreated !== '') {
+                            p.dateCreated += ' and ';
+                        }
+
+                        p.dateCreated += ago.getMinutes() + ' minutes';
+                    }
+
                     return p;
                 });
                 res.status(200).render('list-pastes', { user: req.user, pastes });

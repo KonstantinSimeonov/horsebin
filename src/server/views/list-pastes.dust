@@ -5,12 +5,17 @@
 <div class="list-group">
 {#pastes}
     <a href="/pastes/{_id}/details" class="list-group-item">
-        <h4 class="list-group-item-heading">{name}</h4>
-        <pre class="list-group-item-text">
-            <code class="language-{paste.lang}">
-                {content}...
-            </code>
-        </pre>
+        <blockquote>
+                <h3 class="list-group-item-heading">{name}</h3>
+                <pre class="list-group-item-text">
+                    <code class="language-{paste.lang}">
+                        {content}...
+                    </code>
+                </pre>
+            <small>
+                Posted <time>{dateCreated}</time> ago
+            </small>
+        </blockquote>
     </a>
         <br>
 {/pastes}
