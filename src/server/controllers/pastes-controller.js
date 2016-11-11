@@ -74,9 +74,19 @@ module.exports = {
                     p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
                     const ago = new Date(new Date().getTime() - p.dateCreated);
                     
+
                     p.dateCreated = '';
+                    const daysAgo = ago.getTime() / 1000 / 60 / 60 / 24 | 0;
+
+                    if(daysAgo > 0) {
+                        p.dateCreated += daysAgo + ' days'
+                    } 
 
                     if(ago.getHours() > 0) {
+                        if(daysAgo > 0) {
+                            p.dateCreated += ', '
+                        }
+
                         p.dateCreated += ago.getHours() + ' hours';
                     }
 

@@ -30,7 +30,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/my-pastes">My Pastes</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a id="dd-username" class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {#user}
                             {user.username}
                         {:else}
@@ -42,7 +42,7 @@
                                 <li><a href="/profile">Profile</a></li>
                                 <li><a href="/sign-out">Sign out</a></li>
                             {:else}
-                                <li><a href="/sign-up">Sign up</a></li>
+                                <li><a id="sign-up-btn" href="#sign-up">Sign up</a></li>
                                 <li class="divider"></li>
                                 <li><a href="/sign-in">Sign in</a></li>
                                 <li><a href="/sign-in/github">Sign in with GitHub</a></li>
@@ -82,6 +82,7 @@
         </footer>
     </section>
     
+    <script src="/public/js/home-controller.js"></script>
     {+scripts/}
 </body>
 

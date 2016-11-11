@@ -18,10 +18,10 @@
         </blockquote>
     </a>
         <br>
+{:else}
+<h2>No pastes yet!</h2>
 {/pastes}
 
-
-  
   <!--<a href="#" class="list-group-item">
     <h4 class="list-group-item-heading">List group item heading</h4>
     <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
@@ -31,19 +31,12 @@
 {/mainContent}
 
 {<styles}
-
 <link rel="stylesheet" href="/public/css/prism-{user.settings.theme}.css">
-
 {/styles}
 
 {<scripts}
-
 <script src="/public/js/prism.js"></script>
-
-{#pastes}
-
-<script src="/public/js/prism-{lang}.js"></script>
-
-{/pastes}
-
+    {#pastes}
+        <script src="/public/js/prism-{lang}.js"></script>
+    {/pastes}
 {/scripts}

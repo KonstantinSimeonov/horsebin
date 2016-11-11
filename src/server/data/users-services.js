@@ -19,7 +19,7 @@ module.exports = {
         const userToAdd = {
             username: user.username,
             salt: salt,
-            passHash: encrypt.hashPassword(salt, user.password),
+            passHash: encrypt.hashPassword(salt, user.pswd),
             roles: ['standard'],
             dateRegistered: new Date().getTime()
         };

@@ -6,7 +6,7 @@ const usersServices = require('../data/users-services'),
 module.exports = {
     getRegistrationForm(req, res) {
         res.status(200).render('sign-up', {
-            formLegend: 'Fill in you username and password',
+            formLegend: 'Enter username and password',
             formAction: '/sign-up',
             submitBtnMsg: 'Sign up'
         });
