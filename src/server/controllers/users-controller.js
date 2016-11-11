@@ -12,10 +12,8 @@ module.exports = {
         });
     },
     register(req, res) {
-        console.log(req.body);
-        // res.redirect('/sign-up');
         usersServices.createUser(req.body).then(function (dbRes) {
-            res.redirect('/pastes/create');
+            res.status(201).json({  });
         })
             .catch(function (err) {
                 console.log(err);
@@ -35,15 +33,12 @@ module.exports = {
             return res.status(200).render('profile', { user: req.user, themes });
         }
 
-
         res.status(403).render('error');
     },
     updateSettings(req, res) {
         const settings = req.body.settings;
 
         settings.theme = settings.theme.toLowerCase();
-
-        console.log(settings);
 
         usersServices.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
     }

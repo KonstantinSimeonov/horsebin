@@ -1,8 +1,10 @@
 $(() => {
+    'use strict';
 
     const $signUpBtn = $('#sign-up-btn'),
         $overlay = $('<div class="gray-overlay" />');
 
+    // TODO: refactor this ****
     $signUpBtn.on('click', ev => {
         $.ajax({
             url: '/sign-up',
@@ -13,12 +15,9 @@ $(() => {
                 $('body').append($overlay);
                 $('body').append($('<section />').html(form))
 
-                $('#btn-submit').on('click', ev => {
+                const onSubmitClick = ev => {
                     ev.preventDefault();
-                    console.log({
-                            username: $('#username-input').val(),
-                            pswd: $('#pswd-input').val()
-                        });
+
                     $.ajax({
                         url: '/sign-up',
                         method: 'POST',
@@ -27,13 +26,17 @@ $(() => {
                             username: $('#username-input').val(),
                             pswd: $('#pswd-input').val()
                         })
-                    })
-                });
+                    });
+                };
+                $('#btn-submit').on('click', onSubmitClick);
 
-                $('#btn-submit').on('click', ev => {
+                const closeDialog = ev => {
                     $overlay.remove();
                     $('.dialog-window').remove();
-                });
+                };
+
+                $('#btn-submit').on('click', closeDialog);
+                $('#btn-close').on('click', closeDialog);
             },
             error: console.log
         });
