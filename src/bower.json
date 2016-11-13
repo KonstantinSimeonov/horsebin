@@ -1,0 +1,29 @@
+{
+  "name": "npaste",
+  "description": "Code sharing app",
+  "main": "./server/server.js",
+  "authors": [
+    "Konstantin Simeonov"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "pastes",
+    "sharing",
+    "code",
+    "easy"
+  ],
+  "homepage": "https://github.com/KonstantinSimeonov/npaste",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "prism": "prismjs#^1.5.1",
+    "bootswatch": "^3.3.7"
+  }
+}
