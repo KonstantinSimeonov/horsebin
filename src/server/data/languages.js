@@ -11,7 +11,7 @@ module.exports = {
             return cachedNames;
         }
 
-        const prismJsPath = '../../node_modules/prismjs/components/';
+        const prismJsPath = '../../public/bower_components/prism/components';
 
         const languageNames = fs.readdirSync(path.join(__dirname, prismJsPath))
                                     .map(x => x.split('-')

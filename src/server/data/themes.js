@@ -1,10 +1,5 @@
 'use strict';
 
-const fs = require('fs'),
-    path = require('path');
-
-let CACHE;
-
 function startsWith(str, start) {
     if (str.length < start.length) {
         return false;
@@ -19,11 +14,19 @@ function startsWith(str, start) {
     return true;
 }
 
+const fs = require('fs'),
+    path = require('path');
+
+let CACHE;
+
 module.exports = {
     getDropdownThemes() {
 
         if (!CACHE) {
-            CACHE = fs.readdirSync(path.join(__dirname, '../../public/css'))
+
+            const themesDir = '../../public/bower_components/prism/themes/';
+
+            CACHE = fs.readdirSync(path.join(__dirname, themesDir))
                 .filter(fn => startsWith(fn, 'prism-'))
                 .map(fn => fn.split('prism-')
                              .pop()

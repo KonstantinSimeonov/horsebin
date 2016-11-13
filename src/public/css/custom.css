@@ -24,7 +24,7 @@ pre {
     overflow-y: scroll;
 }
 
-#notification-container {
+#alerts-container {
     position: fixed;
     top: 1em;
     right: 1em;
@@ -49,17 +49,19 @@ html, body {
 
 #main-content {
     overflow: auto;
-    padding-bottom: 150px; /* this needs to be bigger than footer height*/
+    padding-bottom: 150px;
+    /* this needs to be bigger than footer height*/
 }
 
 .footer {
     position: relative;
-    margin-top: -150px; /* negative value of footer height */
+    margin-top: -150px;
+    /* negative value of footer height */
     height: 150px;
     clear: both;
     padding-top: 20px;
     text-align: center;
-} 
+}
 
 .dialog-window {
     position: absolute;
@@ -79,4 +81,15 @@ html, body {
     background-color: white;
     top: 0;
     left: 0;
+}
+
+.fading {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+.out {
+    opacity: 0;
 }

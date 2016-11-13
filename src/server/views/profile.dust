@@ -50,16 +50,27 @@
         {#themes}
           <li><a class="dd-paste-theme" href="#" data-theme="{.}">{.}</a></li>
         {/themes}
-        <!--<li><a class="dd-paste-theme" href="#" data-theme="solarizedlight">Solarized light</a></li>
-        <li><a class="dd-paste-theme" href="#" data-theme="coy">Coy</a></li>
-        <li><a class="dd-paste-theme" href="#" data-theme="tomorrow">Tomorrow</a></li>-->
        </ul>
     </div>
   </div>
 </div>
 
+<div id="alerts-container">
+    <div class="alert alert-dismissible alert-success collapse fading">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong> <em class="alert-msg"></em>
+    </div>
+
+    <div class="alert alert-dismissible alert-danger collapse fading">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <!-- TODO: meaningful message -->
+        <strong>Error! :(</strong>
+        <em class="alert-msg"></em>
+    </div>
+</div>
+
 {/mainContent}
 
 {<scripts}
-<script src="/public/js/profile.js"></script>
+<script src="/public/js/profile-controller.js"></script>
 {/scripts}
