@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta keywords="paste code open source share">
     <title>npaste</title>
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/bower_components/bootswatch/darkly/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/custom.css">
     {+styles/}
-    <script src="/public/js/jquery.min.js"></script>
-    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     
 </head>
 

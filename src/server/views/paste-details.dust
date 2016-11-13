@@ -30,8 +30,8 @@
 {/styles}
 
 {<scripts}
-<script src="/public/js/prism.js"></script>
-<script src="/public/js/prism-haskell.min.js"></script>
+<script src="/public/bower_components/prism/prism.js"></script>
+<script src="/public//bower_components/prism/components/prism-{paste.lang}.min.js"></script>
 <script src="/public/js/copy-to-clipboard.js"></script>
 <script src="/public/js/fetch-as-file.js"></script>
 {/scripts}

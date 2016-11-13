@@ -1,6 +1,4 @@
 <dialog class="dialog-window vertical-offset-5 col-xs-offset-4 col-lg-5">
-  <!--{>_layout/}
-{<mainContent}-->
 <form class="form-horizontal col-lg-10 vertical-offset-2" action="{formAction}" method="POST">
   <fieldset>
     <legend>{formLegend}</legend>
@@ -27,6 +25,4 @@
     </div>
   </fieldset>
 </form>
-<!--{/mainContent}-->
-
 </dialog>
