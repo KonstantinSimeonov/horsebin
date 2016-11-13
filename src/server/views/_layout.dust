@@ -54,8 +54,8 @@
             </div>
         </div>
     </nav>
-    <section id="container" class="container">
-        <main id="main-content" class="container col-lg-8 pull-left">
+    <section id="container" class="container pull-left col-lg-12">
+        <main id="main-content" class="container col-lg-9 pull-left">
         {+mainContent/}
         </main>
 
@@ -74,14 +74,14 @@
                 {/mostRecentPastes}
             </ul>
         </aside>
-        <footer class="footer">
+        
+    </section>
+    <footer class="footer">
             <a href="https://github.com/KonstantinSimeonov/npaste">Open source project</a>. 
              Powered by <a href="https://nodejs.org">Node.js</a> with <a href="https://expressjs.com/">Express</a>, 
               <a href="http://www.dustjs.com/">Dust.js</a>, <a href="http://prismjs.com/">PrismJs</a> 
                and <a href="https://jquery.com/">jQuery</a>
         </footer>
-    </section>
-    
     <script src="/public/js/home-controller.js"></script>
     {+scripts/}
 </body>

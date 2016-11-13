@@ -19,9 +19,8 @@ pre {
 .paste-content {
     display: inline-block;
     min-height: 25em;
-    max-height: 30em;
     width: 100%;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 #alerts-container {
@@ -50,6 +49,7 @@ html, body {
 #main-content {
     overflow: auto;
     padding-bottom: 150px;
+    min-height: 50em;
     /* this needs to be bigger than footer height*/
 }
 
