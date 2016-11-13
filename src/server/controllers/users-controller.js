@@ -29,7 +29,9 @@ module.exports = {
     },
     getProfile(req, res) {
         if (req.user) {
-            const themes = themeServices.getDropdownThemes();
+            const themes = themeServices.getDropdownThemes(),
+                theme = req.user.settings.theme;
+            req.user.settings.theme = theme[0].toUpperCase() + theme.slice(1);
             return res.status(200).render('profile', { user: req.user, themes });
         }
 

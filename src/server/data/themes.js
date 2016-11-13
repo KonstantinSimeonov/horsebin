@@ -1,5 +1,6 @@
 'use strict';
 
+// check if a string starts with another string
 function startsWith(str, start) {
     if (str.length < start.length) {
         return false;
@@ -24,15 +25,15 @@ module.exports = {
 
         if (!CACHE) {
 
-            const themesDir = '../../public/bower_components/prism/themes/';
+            const themesDir = path.join(__dirname, '../../public/bower_components/prism/themes/');
 
-            CACHE = fs.readdirSync(path.join(__dirname, themesDir))
-                .filter(fn => startsWith(fn, 'prism-'))
-                .map(fn => fn.split('prism-')
-                             .pop()
-                             .split('.css')
-                             .shift())
-                .map(themeName => themeName[0].toUpperCase() + themeName.slice(1));
+            CACHE = fs.readdirSync(themesDir)
+                            .filter(fn => startsWith(fn, 'prism-'))
+                            .map(fn => fn.split('prism-')
+                                        .pop()
+                                        .split('.')
+                                        .shift())
+                            .map(themeName => themeName[0].toUpperCase() + themeName.slice(1));
         }
 
         return CACHE;

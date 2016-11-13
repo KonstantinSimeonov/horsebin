@@ -3,25 +3,26 @@
 const fs = require('fs'),
     path = require('path');
 
-let cachedNames;
+let CACHE;
 
 module.exports = {
     getLanguageNamesForDropdown() {
-        if(cachedNames) {
-            return cachedNames;
+        if(!CACHE) {
+            const prismJsPath = path.join(__dirname, '../../public/bower_components/prism/components'),
+            languageNames = fs.readdirSync(prismJsPath)
+                                        // take every second element because there are minified files
+                                        .filter((_, i) => i & 1)
+                                        // file names are in the format 'prism-LANG.min.js'
+                                        .map(x => x.split('-')
+                                                    .pop()
+                                                    .split('.')
+                                                    .shift())
+                                        // capital case
+                                        .map(langName => langName[0].toUpperCase() + langName.slice(1));
+
+            CACHE = languageNames;
         }
-
-        const prismJsPath = '../../public/bower_components/prism/components';
-
-        const languageNames = fs.readdirSync(path.join(__dirname, prismJsPath))
-                                    .map(x => x.split('-')
-                                                .pop()
-                                                .split('.')
-                                                .shift())
-                                    .filter((_, i) => i & 1);
-
-        cachedNames = languageNames;
-
-        return cachedNames;
+        
+        return CACHE;
     }
 }
