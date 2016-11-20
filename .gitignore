@@ -1,3 +1,6 @@
+# static configurations
+static-config.json
+
 # Logs
 logs
 *.log

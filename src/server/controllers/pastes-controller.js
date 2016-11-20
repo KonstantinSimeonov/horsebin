@@ -100,6 +100,13 @@ module.exports = {
 
                     return p;
                 });
+
+                if(!req.user.settings) {
+                    req.user.settings = { theme: 'solarizedlight' };
+                } else if(!req.user.settings.theme) {
+                    res.user.settings.theme = 'solatizedlight';
+                }
+
                 res.status(200).render('list-pastes', { user: req.user, pastes });
             })
             .catch(error => {

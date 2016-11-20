@@ -1,58 +1,32 @@
 'use strict';
 
 const passport = require('passport'),
-    LocalPassport = require('passport-local'),
     session = require('express-session'),
     users = require('../data/users-services'),
-    encrypt = require('../utils/encrypt');
-
-function authenticate(user, pswd) {
-    return encrypt.hashPassword(user.salt, pswd) === user.passHash;
-}
+    localStrategy = require('./passport-local'),
+    githubStrategy = require('./passport-github');
 
 module.exports = function (server) {
-        
+
     // insert middleware
-    server.use(session({ secret: 'huc huc' }));
+    server.use(session({ secret: 'secret horse' }));
     server.use(passport.initialize());
     server.use(passport.session());
 
-    // set local auth strategy
-    passport.use(new LocalPassport({
-        passReqToCallback: true
-    }, function (req, username, password, done) {
-        users
-            .byUsername(username)
-            .then(function (dbUser) {
-                if (dbUser && authenticate(dbUser, password)) {
-                    return done(null, dbUser);
-                }
-                
-                return done(null, false);
-            }, function (error) {
-                console.log(error);
-                done(error, false);
-            });
-    }));
+    // use auth strategies
+    passport.use(localStrategy);
+    passport.use(githubStrategy);
 
-    passport.serializeUser(function (user, done) {
+    passport.serializeUser((user, done) => {
         if (user) {
             return done(null, user._id);
         }
     });
 
-    passport.deserializeUser(function (id, done) {
+    passport.deserializeUser((id, done) => {
         users
             .byId(id)
-            .then(function (dbUser) {
-                if (dbUser) {
-                    return done(null, dbUser);
-                } else {
-                    return done(null, false);
-                }
-            }, function (error) {
-                console.log(error);
-                done(error, false);
-            });
+            .then(user => done(null, user || false))
+            .catch(error => done(error, false));
     });
 }

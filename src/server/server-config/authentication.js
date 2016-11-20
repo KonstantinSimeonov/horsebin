@@ -5,27 +5,20 @@ const passport = require('passport');
 module.exports = {
     login(req, res, next) {
 
-        const auth = passport.authenticate('local', function (error, user) {
+        const auth = passport.authenticate('local', (error, user) => {
             if (error) {
                 return next(error);
             }
 
             if (!user) {
-                return res.send({
-                    success: false
-                });
+                return res.send({ success: false });
             }
 
-            // use function attached to the request by passport
-            req.logIn(user, function (error) {
+            req.logIn(user, error => {
                 if (error) {
                     return next(error);
                 }
 
-                // res.send({
-                //     success: true,
-                //     user: user
-                // });
                 res.redirect('/home');
             });
         });
@@ -35,22 +28,21 @@ module.exports = {
     logout(req, res, next) {
         req.logout();
         res.redirect('/home');
-        //res.end();
     },
     isAuthenticated(req, res, next) {
         if (!req.isAuthenticated()) {
-            res.status(403).redirect('/unauthorized');
-        } else {
-            next();
+            return res.status(403).redirect('/unauthorized');
         }
+
+        next();
     },
     isInRole(role) {
-        return function (req, res, next) {
+        return (req, res, next) => {
             if (req.isAuthenticated() && req.user.roles.indexOf(role) !== -1) {
-                next();
-            } else {
-                res.status(403).redirect('/unauthorized');
+                return next();
             }
+
+            res.status(403).redirect('/unauthorized');
         }
     }
 }

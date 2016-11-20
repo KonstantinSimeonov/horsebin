@@ -29,9 +29,15 @@ module.exports = {
     },
     getProfile(req, res) {
         if (req.user) {
-            const themes = themeServices.getDropdownThemes(),
-                theme = req.user.settings.theme;
-            req.user.settings.theme = theme[0].toUpperCase() + theme.slice(1);
+            const themes = themeServices.getDropdownThemes();
+
+            if(!req.user.settings) {
+                req.user.settings = { theme: 'solarizedlight' };
+            } else if(!req.user.settings.theme) {
+                req.user.settings.theme = 'solarizedlight';
+            }
+
+            req.user.settings.theme = req.user.settings.theme[0].toUpperCase() + req.user.settings.theme.slice(1);
             return res.status(200).render('profile', { user: req.user, themes });
         }
 

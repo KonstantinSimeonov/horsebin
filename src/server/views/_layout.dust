@@ -45,7 +45,7 @@
                                 <li><a id="sign-up-btn" href="#sign-up">Sign up</a></li>
                                 <li class="divider"></li>
                                 <li><a href="/sign-in">Sign in</a></li>
-                                <li><a href="/sign-in/github">Sign in with GitHub</a></li>
+                                <li><a href="/auth/github">Sign in with GitHub</a></li>
                             {/user}
                             
                         </ul>
