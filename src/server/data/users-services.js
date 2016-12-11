@@ -22,7 +22,7 @@ module.exports = {
         const userToAdd = {
             username: user.username,
             salt: salt,
-            passHash: encrypt.hashPassword(salt, user.pswd || encrypt.genenerateRandomPassword()),
+            passHash: encrypt.hashPassword(salt, user.password || encrypt.genenerateRandomPassword()),
             roles: ['standard'],
             dateRegistered: new Date().getTime()
         };

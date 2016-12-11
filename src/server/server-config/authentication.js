@@ -4,14 +4,13 @@ const passport = require('passport');
 
 module.exports = {
     login(req, res, next) {
-
         const auth = passport.authenticate('local', (error, user) => {
             if (error) {
                 return next(error);
             }
 
             if (!user) {
-                return res.send({ success: false });
+                return res.status(400).json({ success: false, msg: 'Invalid username or password!' });
             }
 
             req.logIn(user, error => {
@@ -19,15 +18,15 @@ module.exports = {
                     return next(error);
                 }
 
-                res.redirect('/home');
+                return res.status(200).json({ success: true });
             });
         });
 
         auth(req, res, next);
     },
-    logout(req, res, next) {
+    logout(req, res) {
         req.logout();
-        res.redirect('/home');
+        res.status(200).redirect('/home');
     },
     isAuthenticated(req, res, next) {
         if (!req.isAuthenticated()) {

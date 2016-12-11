@@ -1,4 +1,7 @@
+'use strict';
+
 $(function () {
+    
     const $visibilityControls = $('#visibility-controls'),
         $passwordControls = $('#password-controls'),
         $pswdInput = $('#paste-pswd'),

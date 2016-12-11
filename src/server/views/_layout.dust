@@ -44,7 +44,7 @@
                             {:else}
                                 <li><a id="sign-up-btn" href="#sign-up">Sign up</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/sign-in">Sign in</a></li>
+                                <li><a id="sign-in-btn" href="#sign-in">Sign in</a></li>
                                 <li><a href="/auth/github">Sign in with GitHub</a></li>
                             {/user}
                             
@@ -82,7 +82,10 @@
               <a href="http://www.dustjs.com/">Dust.js</a>, <a href="http://prismjs.com/">PrismJs</a> 
                and <a href="https://jquery.com/">jQuery</a>
         </footer>
+
+    <!-- scripts -->
     <script src="/public/js/home-controller.js"></script>
+    <script src="/public/js/html-requester.js"></script>
     {+scripts/}
 </body>
 

@@ -14,5 +14,5 @@ module.exports = function (server) {
         .get('/auth/github', passport.authenticate('github', { scope: 'user' }), (req, res) => {})
         .get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/gosho' }), (req, res) => res.redirect('/home'))
         .post('/sign-in', authentication.login)
-        .post('/sign-out', authentication.isAuthenticated, authentication.logout, (req, res) => res.redirect('/home'))
+        .get('/sign-out', authentication.isAuthenticated, authentication.logout)
 }

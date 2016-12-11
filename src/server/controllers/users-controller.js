@@ -13,7 +13,7 @@ module.exports = {
     },
     register(req, res) {
         usersServices.createUser(req.body).then(function (dbRes) {
-            res.status(201).json({  });
+            res.status(201).json({ success: true  });
         })
             .catch(function (err) {
                 console.log(err);
