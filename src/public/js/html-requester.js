@@ -4,13 +4,12 @@ const htmlRequester = (() => {
 
     const CACHE = Object.create(null);
 
-    function requestHtml(url, data) {
+    function requestHtml(url) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: url,
                 method: 'GET',
                 contentType: 'application/json',
-                data: JSON.stringify(data),
                 success: resolve,
                 error: reject
             });
@@ -18,9 +17,9 @@ const htmlRequester = (() => {
     }
 
     return {
-        getHtml(url, data) {
-            if (data || !CACHE[url]) {
-                return requestHtml(url, data);
+        getHtml(url) {
+            if (!CACHE[url]) {
+                return requestHtml(url);
             }
 
             return Promise.resolve(CACHE[url]);

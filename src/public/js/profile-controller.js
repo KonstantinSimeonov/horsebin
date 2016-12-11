@@ -41,7 +41,6 @@ $(function () {
             success: function () {
                 const capitalCasedTheme = toCapitalCase(selectedTheme);
                 
-                //showAlert($alertSuccess, `Paste theme successfully changed to ${capitalCasedTheme}`);
                 notifier.success(`Paste theme successfully changed to ${capitalCasedTheme}`);
                 $dropDownBtnText.text(capitalCasedTheme)
             },
