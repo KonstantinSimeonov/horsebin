@@ -31,13 +31,15 @@
                     <li><a href="/my-pastes">My Pastes</a></li>
                     <li class="dropdown">
                         <a id="dd-username" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {#user}
-                            {user.username}
-                        {:else}
-                            Guest
-                        {/user}    
+                        <span id="username">
+                            {#user}
+                                {user.username}
+                            {:else}
+                                Guest
+                            {/user} 
+                        </span>   
                         <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
+                        <ul id="user-menu" class="dropdown-menu" aria-labelledby="themes">
                             {#user}
                                 <li><a href="/profile">Profile</a></li>
                                 <li><a href="/sign-out">Sign out</a></li>

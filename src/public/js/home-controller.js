@@ -24,6 +24,17 @@ $(() => {
             });
     }
 
+    function onSignInSuccess(res, username) {
+        notifier.success(res.msg);
+        closeDialog();
+
+        $('#username').text(username);
+        $('#user-menu').html(`
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/sign-out">Sign out</a></li>
+        `);
+    }
+
     $signUpBtn.on('click', () => {
         showForm('/sign-up')
             .then(() => {
@@ -35,12 +46,13 @@ $(() => {
 
                     jsonRequester
                         .post('/sign-up', { username, password })
-                        .then(res => {
-                            notifier.success(res.msg);
+                        .then(() => {
+                            return jsonRequester.post('/sign-in', { username, password });
                         })
+                        .then(res => onSignInSuccess(res, username))
                         .catch(err => notifier.failure(err.msg));
-                })
-            })
+                });
+            });
     });
 
     $signInBtn.on('click', () => {
@@ -56,10 +68,7 @@ $(() => {
 
                     jsonRequester
                         .post('/sign-in', { username, password })
-                        .then(res => {
-                            notifier.success(res.msg);
-                            closeDialog();
-                        })
+                        .then(res => onSignInSuccess(res, username))
                         .catch(err => notifier.failure(err.msg));
                 });
             });
