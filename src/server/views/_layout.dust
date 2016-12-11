@@ -86,6 +86,8 @@
     <!-- scripts -->
     <script src="/public/js/home-controller.js"></script>
     <script src="/public/js/html-requester.js"></script>
+    <script src="/public/js/notifier.js"></script>
+    <script src="/public/js/json-requester.js"></script>
     {+scripts/}
 </body>
 

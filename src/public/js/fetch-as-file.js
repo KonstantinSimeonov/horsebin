@@ -1,3 +1,5 @@
+'use strict';
+
 $(function () {
     // TODO: expand
     const filetypeMap = {

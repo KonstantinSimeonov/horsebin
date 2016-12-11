@@ -1,3 +1,5 @@
+'use strict';
+
 $(function () {
     const $tmpInput = $('<textarea />'),
         $cloneBtn = $('#clone-btn'),

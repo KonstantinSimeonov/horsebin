@@ -5,28 +5,13 @@ $(() => {
         $signInBtn = $('#sign-in-btn'),
         $overlay = $('<div class="gray-overlay" />');
 
-    function getForm(getUrl, postUrl) {
-        return () => {
-            htmlRequester
-            .getHtml(getUrl)
+    function showForm(serverRoute) {
+        return htmlRequester
+            .getHtml(serverRoute)
             .then(form => {
-                $('body').append($overlay);
-                $('body').append($('<section />').html(form))
-
-                $('#btn-submit').on('click', ev => {
-                    ev.preventDefault();
-
-                    $.ajax({
-                        url: postUrl,
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            username: $('#username-input').val(),
-                            password: $('#pswd-input').val()
-                        }),
-                        success: console.log
-                    });
-                });
+                $('body')
+                    .append($overlay)
+                    .append(form);
 
                 const closeDialog = () => {
                     $overlay.remove();
@@ -35,78 +20,46 @@ $(() => {
 
                 $('#btn-submit').on('click', closeDialog);
                 $('#btn-close').on('click', closeDialog);
-            })
-            .catch(console.log);
-        }
+
+                return Promise.resolve();
+            });
     }
 
-
-    $signInBtn.on('click', ev => {
-        htmlRequester
-            .getHtml('/sign-in')
-            .then(form => {
-                $('body').append($overlay);
-                $('body').append(form);
-
+    $signUpBtn.on('click', () => {
+        showForm('/sign-up')
+            .then(() => {
                 $('#btn-submit').on('click', ev => {
                     ev.preventDefault();
 
-                    $.ajax({
-                        url: '/sign-in',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            username: $('#username-input').val(),
-                            password: $('#pswd-input').val()
-                        }),
-                        success: console.log,
-                        error: (fail) => {
-                            console.log(fail.responseJSON.msg);
-                            alert('fail')
-                        }
-                    });
-                });
+                    const username = $('#username-input').val(),
+                        password = $('#pswd-input').val();
 
-                const closeDialog = () => {
-                    $overlay.remove();
-                    $('.dialog-window').remove();
-                };
-
-                $('#btn-submit').on('click', closeDialog);
-                $('#btn-close').on('click', closeDialog);
-            });
+                    jsonRequester
+                        .post('/sign-up', { username, password })
+                        .then(res => {
+                            notifier.success(res.msg);
+                        })
+                        .catch(err => notifier.failure(err.msg));
+                })
+            })
     });
 
-    // $signUpBtn.on('click', ev => {
-    //     htmlRequester
-    //         .getHtml('/sign-up')
-    //         .then(form => {
-    //             $('body').append($overlay);
-    //             $('body').append($('<section />').html(form))
+    $signInBtn.on('click', () => {
+        showForm('/sign-in')
+            .then(() => {
+                $('#btn-submit').on('click', () => {
+                    ev.preventDefault();
 
-    //             const onSubmitClick = ev => {
-    //                 ev.preventDefault();
+                    const username = $('#username-input').val(),
+                        password = $('#pswd-input').val();
 
-    //                 $.ajax({
-    //                     url: '/sign-up',
-    //                     method: 'POST',
-    //                     contentType: 'application/json',
-    //                     data: JSON.stringify({
-    //                         username: $('#username-input').val(),
-    //                         pswd: $('#pswd-input').val()
-    //                     })
-    //                 });
-    //             };
-    //             $('#btn-submit').on('click', onSubmitClick);
-
-    //             const closeDialog = ev => {
-    //                 $overlay.remove();
-    //                 $('.dialog-window').remove();
-    //             };
-
-    //             $('#btn-submit').on('click', closeDialog);
-    //             $('#btn-close').on('click', closeDialog);
-    //         })
-    //         .catch(console.log);
-    // });
+                    jsonRequester
+                        .post('/sign-in', { username, password })
+                        .then(res => {
+                            notifier.success(res.msg);
+                        })
+                        .catch(err => notifier.failure(err.msg));
+                });
+            });
+    });
 });

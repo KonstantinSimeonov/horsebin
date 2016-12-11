@@ -18,18 +18,18 @@ $(function () {
         return str[0].toUpperCase() + str.slice(1);
     }
 
-    function showAlert($alertElement, message) {
-        $alertElement
-            .find('.alert-msg')
-            .text(message);
+    // function showAlert($alertElement, message) {
+    //     $alertElement
+    //         .find('.alert-msg')
+    //         .text(message);
         
-        $alertElement.removeClass('out');
-        $alertContainer.append($alertElement);
+    //     $alertElement.removeClass('out');
+    //     $alertContainer.append($alertElement);
 
-        setTimeout(() => {
-            $alertElement.addClass('out');
-        }, FADEOUT_TIME);
-    }
+    //     setTimeout(() => {
+    //         $alertElement.addClass('out');
+    //     }, FADEOUT_TIME);
+    // }
 
     $themeButtons.on('click', function (ev) {
         selectedTheme = $(ev.target).attr('data-theme');
@@ -41,11 +41,12 @@ $(function () {
             success: function () {
                 const capitalCasedTheme = toCapitalCase(selectedTheme);
                 
-                showAlert($alertSuccess, `Paste theme successfully changed to ${capitalCasedTheme}`);
+                //showAlert($alertSuccess, `Paste theme successfully changed to ${capitalCasedTheme}`);
+                notifier.success(`Paste theme successfully changed to ${capitalCasedTheme}`);
                 $dropDownBtnText.text(capitalCasedTheme)
             },
             // TODO: meaningful error handling
-            error: showAlert.bind(null, $alertError, 'Gosho ti sprq neta')
+            error: () => notifier.failure('Gosho')
         });
     });
 });
