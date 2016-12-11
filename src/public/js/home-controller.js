@@ -33,6 +33,8 @@ $(() => {
             <li><a href="/profile">Profile</a></li>
             <li><a href="/sign-out">Sign out</a></li>
         `);
+
+        $('.nav.navbar-nav.navbar-right').prepend($('<li><a href="/my-pastes">My pastes</a></li>'))
     }
 
     $signUpBtn.on('click', () => {
@@ -63,8 +65,6 @@ $(() => {
 
                     const username = $('#username-input').val(),
                         password = $('#pswd-input').val();
-
-                    console.log($('input'));
 
                     jsonRequester
                         .post('/sign-in', { username, password })

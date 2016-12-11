@@ -21,13 +21,11 @@
 {/mainContent}
 
 {<styles}
-    <link rel="stylesheet" href="/public/css/prism.css">
-
     <!-- render user-selected theme -->
     {#user}
         <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-{user.settings.theme}.css">
     {:else}
-        <link rel="stylesheet" href="/public/css/prism-solarizedlight.css">
+        <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css">
     {/user}
 
 {/styles}
