@@ -1,29 +1,35 @@
 'use strict';
 
 const pastesServices = require('../data/pastes-services'),
-    langServices = require('../data/languages');
+    langServices = require('../data/languages'),
+    moment = require('moment');
 
 function getNthIndex(n, symbol, str) {
     let index = 0,
         count = 0;
 
-    while(count < n && index < str.length) {
+    while (count < n && index < str.length) {
         index = str.indexOf(symbol, index + 1);
         count += 1;
     }
-    console.log(index);
+
     return index;
+}
+
+function projectPaste(paste) {
+    // kill bug when can
+    console.log(paste.timeElapsedFromCreation);
+    paste.timeElapsedFromCreation = moment(new Date(paste.dateCreated)).fromNow();
+    console.log(paste.timeElapsedFromCreation);
+    return paste;
 }
 
 module.exports = {
     byId(req, res) {
-        const paste = req.paste;
-        paste.dateCreated = new Date(paste.dateCreated).toLocaleString('en');
+        const paste = projectPaste(req.paste);
 
-        const mostRecentPastes = req.mostRecent;
-
-        mostRecentPastes.forEach(p => p.dateCreated = new Date(p.dateCreated).toLocaleString('en'));
-
+        const mostRecentPastes = req.mostRecent.map(projectPaste);
+ 
         res.status(200).render('paste-details', {
             user: req.user,
             paste: paste,
@@ -31,12 +37,13 @@ module.exports = {
         });
     },
     getCreate(req, res) {
-        const languageNames = langServices.getLanguageNamesForDropdown();
-
+        const languageNames = langServices.getLanguageNamesForDropdown(),
+            pastes = req.mostRecent.map(projectPaste);
+        
         res.status(200).render('create-paste', {
             user: req.user,
             langNames: languageNames,
-            mostRecentPastes: req.mostRecent
+            mostRecentPastes: pastes
         });
     },
     create(req, res) {
@@ -59,10 +66,10 @@ module.exports = {
 
                 res.redirect(`/pastes/${paste._id}/details`);
             })
-            .catch(d => { 
-                console.log(d); 
+            .catch(d => {
+                console.log(d);
                 res.json(d)
-            })
+            });
     },
     byUser(req, res) {
         const user_id = req.user._id;
@@ -72,40 +79,10 @@ module.exports = {
             .then(pastes => {
                 const shortenedPastes = pastes.map(p => {
                     p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
-                    const ago = new Date(new Date().getTime() - p.dateCreated);
-                    
-
-                    p.dateCreated = '';
-                    const daysAgo = ago.getTime() / 1000 / 60 / 60 / 24 | 0;
-
-                    if(daysAgo > 0) {
-                        p.dateCreated += daysAgo + ' days'
-                    } 
-
-                    if(ago.getHours() > 0) {
-                        if(daysAgo > 0) {
-                            p.dateCreated += ', '
-                        }
-
-                        p.dateCreated += ago.getHours() + ' hours';
-                    }
-
-                    if(ago.getMinutes() > 0) {
-                        if(p.dateCreated !== '') {
-                            p.dateCreated += ' and ';
-                        }
-
-                        p.dateCreated += ago.getMinutes() + ' minutes';
-                    }
+                    projectPaste(p);
 
                     return p;
                 });
-
-                if(!req.user.settings) {
-                    req.user.settings = { theme: 'solarizedlight' };
-                } else if(!req.user.settings.theme) {
-                    res.user.settings.theme = 'solatizedlight';
-                }
 
                 res.status(200).render('list-pastes', { user: req.user, pastes });
             })

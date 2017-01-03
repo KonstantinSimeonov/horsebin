@@ -68,12 +68,12 @@
                 {#mostRecentPastes}
                     <li class="list-group-item">
                         {#name}
-                            <a class="text-success" href="/pastes/{_id}/details">{name}</a>
+                            <p><a class="text-success" href="/pastes/{_id}/details">{name}</a></p>
                         {/name}
                         {#lang}
                             <p class="text-warning">{lang}</p>
                         {/lang}
-                        <time>{dateCreated}</time>
+                        <time>{timeElapsedFromCreation}</time>
                     </li>
                 {/mostRecentPastes}
             </ul>

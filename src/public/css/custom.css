@@ -110,6 +110,6 @@ html, body {
 }
 
 #available-langs li:hover {
-    background: lightblue;
+    background: #375A7F;
     text-decoration: underline;
 }
