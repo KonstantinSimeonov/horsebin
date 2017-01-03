@@ -24,7 +24,10 @@ module.exports = {
             salt: salt,
             passHash: encrypt.hashPassword(salt, user.password || encrypt.genenerateRandomPassword()),
             roles: ['standard'],
-            dateRegistered: new Date().getTime()
+            dateRegistered: new Date().getTime(),
+            settings: {
+                theme: 'solarizedlight'
+            }
         };
 
         if(user.githubId) {

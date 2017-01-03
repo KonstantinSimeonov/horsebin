@@ -94,3 +94,22 @@ html, body {
 .out {
     opacity: 0;
 }
+
+#available-langs {
+    list-style: none;
+    background-color: white;
+    color: black;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    margin-top: -0.5em;
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    width: 50%;
+    border: 1px solid black;
+}
+
+#available-langs li:hover {
+    background: lightblue;
+    text-decoration: underline;
+}
