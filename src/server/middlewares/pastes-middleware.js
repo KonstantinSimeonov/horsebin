@@ -7,6 +7,16 @@ module.exports = {
         pastesServices
             .getById(req.params.pasteId)
             .then(paste => {
+                if(paste.pswd !== req.query.pswd) {
+                    const options = { pasteId: req.params.pasteId };
+                    
+                    if(req.query.pswd) {
+                        options.wrongPswd = true;
+                    }
+
+                    return res.render('unlock-paste', options);
+                }
+
                 req.paste = paste;
                 next();
             })

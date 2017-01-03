@@ -1,0 +1,27 @@
+{>_layout/}
+
+{<mainContent}
+    <form class="form-horizontal bs-component" action="/pastes/{pasteId}/details" method="GET">
+    <fieldset>
+        <legend>This paste is protected with a password.</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Paste id:</label>
+            <div class="col-lg-10">
+                <input class="form-control" type="text" disabled value="{pasteId}">
+            </div>
+        </div>
+        <div class="form-group">
+            <p for="paste-password" class="text-danger col-xs-offset-2">The password you entered didn't match.</p>
+            <label for="paste-password" class="col-lg-2 control-label">Password:</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="pswd" type="password" id="paste-password" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{/mainContent}
