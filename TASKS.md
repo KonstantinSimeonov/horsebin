@@ -1,0 +1,13 @@
+# TODOS
+- server and client validation
+- search pastes
+    - ordering
+    - paging
+- theme change preview
+- implement password-protected paste access
+- report on pastes
+- administration section
+- setup build process
+    - minify/concatenate js and css
+- refactor
+    - specify concrete refactorings
