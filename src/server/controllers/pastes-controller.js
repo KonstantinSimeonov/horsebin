@@ -17,18 +17,14 @@ function getNthIndex(n, symbol, str) {
 }
 
 function projectPaste(paste) {
-    // kill bug when can
-    console.log(paste.timeElapsedFromCreation);
     paste.timeElapsedFromCreation = moment(new Date(paste.dateCreated)).fromNow();
-    console.log(paste.timeElapsedFromCreation);
     return paste;
 }
 
 module.exports = {
     byId(req, res) {
-        const paste = projectPaste(req.paste);
-
-        const mostRecentPastes = req.mostRecent.map(projectPaste);
+        const paste = projectPaste(req.paste),
+            mostRecentPastes = req.mostRecent.map(projectPaste);
  
         res.status(200).render('paste-details', {
             user: req.user,

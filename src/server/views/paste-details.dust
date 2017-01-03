@@ -5,7 +5,7 @@
         <blockquote>
             <summary>
                 <p class="paste-name">{paste.name}</p>
-                <small>{paste.lang}, posted on <time datetime="{paste.dateCreated}">{paste.dateCreated}</time></small>
+                <small>{paste.lang}, posted on <time datetime="{paste.dateCreated}">{paste.timeElapsedFromCreation}</time></small>
             </summary>
         </blockquote>
         <ul class="pager">

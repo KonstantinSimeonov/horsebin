@@ -13,7 +13,7 @@
                     </code>
                 </pre>
             <small>
-                Posted <time>{dateCreated}</time> ago
+                Posted <time>{timeElapsedFromCreation}</time> ago
             </small>
         </blockquote>
     </a>
