@@ -2,14 +2,14 @@
   "name": "npaste",
   "version": "1.0.0",
   "description": "Fast paste sharing app",
-  "main": "./server/server.js",
+  "main": "./src/server/server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/KonstantinSimeonov/npaste"
   },
   "scripts": {
-    "dev": "nodemon server/server.js",
-    "start": "node server/server.js",
+    "dev": "nodemon ./src/server/server.js",
+    "start": "node ./src/server/server.js",
     "postinstall": "bower install"
   },
   "author": "Konstantin Simeonov",

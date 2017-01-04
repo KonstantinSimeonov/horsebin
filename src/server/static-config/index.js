@@ -6,4 +6,6 @@ const fs = require('fs'),
 const staticConfigFilePath = path.join(__dirname, './static-config.json'),
     staticConfig = JSON.parse(fs.readFileSync(staticConfigFilePath));
 
+staticConfig.GITHUB.CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+
 module.exports = Object.freeze(staticConfig);

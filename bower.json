@@ -1,7 +1,7 @@
 {
   "name": "npaste",
   "description": "Code sharing app",
-  "main": "./server/server.js",
+  "main": "./src/server/server.js",
   "authors": [
     "Konstantin Simeonov"
   ],
