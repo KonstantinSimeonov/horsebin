@@ -1,19 +1,22 @@
 {
   "name": "npaste",
   "version": "1.0.0",
-  "description": "gosho",
-  "main": "index.js",
+  "description": "Fast paste sharing app",
+  "main": "./server/server.js",
   "repository": {
-    "gosho": "tosho"
+    "type": "git",
+    "url": "https://github.com/KonstantinSimeonov/npaste"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server/server.js",
     "start": "node server/server.js",
     "postinstall": "bower install"
   },
   "author": "Konstantin Simeonov",
   "license": "ISC",
+  "engines": {
+    "node": "7.3.0"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "bower": "^1.8.0",
@@ -26,7 +29,6 @@
     "klei-dust": "^1.0.0",
     "moment": "^2.17.1",
     "mongodb": "^2.2.11",
-    "npm": "^4.0.2",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
     "passport-local": "^1.0.0"
