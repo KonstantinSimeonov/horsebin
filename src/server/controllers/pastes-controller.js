@@ -25,7 +25,11 @@ module.exports = {
     byId(req, res) {
         const paste = projectPaste(req.paste),
             mostRecentPastes = req.mostRecent.map(projectPaste);
- 
+        
+        if(paste.lang) {
+            paste.lang = paste.lang.toLowerCase();
+        }
+
         res.status(200).render('paste-details', {
             user: req.user,
             paste: paste,
