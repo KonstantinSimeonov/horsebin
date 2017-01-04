@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta keywords="paste code open source share">
+    <meta description="Platform for quick paste sharing">
+    <meta author="Konstantin Simeonov">
     <title>npaste</title>
     <link rel="stylesheet" href="/public/bower_components/bootswatch/darkly/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/custom.css">
