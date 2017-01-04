@@ -51,6 +51,10 @@ function paged(options) {
         filterOptions.name = { $regex: `.*${options.contains}.*` };
     }
 
+    if(options.author) {
+        filterOptions.author = { $regex: `.*${options.author}.*` };
+    }
+
     return connection.then(db => db.collection('pastes')
                                     .find(filterOptions)
                                     .sort({ dateCreated: -1 })

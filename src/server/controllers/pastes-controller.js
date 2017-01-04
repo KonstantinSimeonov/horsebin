@@ -93,7 +93,8 @@ module.exports = {
     paged(req, res) {
         const pageSize = +req.query.pageSize,
             pageNumber = +req.query.page,
-            contains = req.query.contains;
+            contains = req.query.contains,
+            author = req.query.author;
 
         const pager = [];
 
@@ -101,7 +102,7 @@ module.exports = {
             pager.unshift(i - 1);
         }
 
-        pastesServices.paged({ pageSize, pageNumber, contains })
+        pastesServices.paged({ pageSize, pageNumber, contains, author })
             .then(pagedPastes => {
                 res.status(200).render('search', {
                     user: req.user,
@@ -109,7 +110,8 @@ module.exports = {
                     pageInfo: {
                         pages: pager,
                         left: pageNumber - 1,
-                        right: pageNumber + 1
+                        right: pageNumber + 1,
+                        pageNumber
                     }
                 });
             })

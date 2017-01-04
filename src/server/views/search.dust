@@ -1,11 +1,37 @@
 {>_layout/}
 
 {<mainContent}
+    <form class="form-horizontal col-lg-12" action="/pastes" method="GET">
+        <div class="form-group row">
+            <input type="number" class="hidden" name="page" value="{pageInfo.pageNumber}">
+            <input type="number" class="hidden" name="pageSize" value="10">
+            <div class="col-lg-3">
+                <input class="form-control" type="text" name="contains" placeholder="Name contains">
+            </div>
+            <div class="col-lg-3">
+                <input class="form-control" type="text" name="author" placeholder="By author">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" type="text" name="lang" placeholder="Language">
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control" name="sortKey">
+                    <option value="dateCreated" selected>Date</option>
+                    <option value="author">Author</option>
+                    <option value="lang">Language</option>
+                </select>
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-info" type="submit">Go</button>
+            </div>
+        </div>
+    </form>
+
     <ul class="pagination">
         <li><a href="/pastes?pageSize=10&page={pageInfo.left}">&laquo;</a></li>
-        {#pageInfo.pages}
-            <li><a href="/pastes?pageSize=10&page={.}">{.}</a></li>
-        {/pageInfo.pages}
+            {#pageInfo.pages}
+                <li><a href="/pastes?pageSize=10&page={.}">{.}</a></li>
+            {/pageInfo.pages}
         <li><a href="/pastes?pageSize=10&page={pageInfo.right}">&raquo;</a></li>
     </ul>
     <table class="table table-striped table-hover">
