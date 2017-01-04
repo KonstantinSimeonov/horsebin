@@ -11,5 +11,6 @@ module.exports = function (server) {
         .get('/pastes/:pasteId/details', mostRecent5Pastes, pastesMiddleware.pasteById, pastesController.byId)
         .get('/my-pastes', authentication.isAuthenticated, pastesController.byUser)
         .get('/pastes/create', mostRecent5Pastes, pastesController.getCreate)
-        .post('/pastes/create', pastesController.create);
+        .post('/pastes/create', pastesController.create)
+        .get('/pastes', pastesController.paged);
 }

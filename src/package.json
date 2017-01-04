@@ -7,7 +7,10 @@
     "gosho": "tosho"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/server.js",
+    "start": "node server/server.js",
+    "postinstall": "bower install"
   },
   "author": "Konstantin Simeonov",
   "license": "ISC",
@@ -27,5 +30,8 @@
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

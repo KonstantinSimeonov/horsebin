@@ -26,7 +26,15 @@
                         <a class="btn btn-success" id="create-paste-btn" href="/pastes/create">Create paste</a>
                     </li>
                 </ul>
-
+                <form class="navbar-form navbar-left" role="search" action="/pastes" method="GET">
+                    <div class="input-group">
+                        <span class="input-group-addon search-glyph">&#x2315;</span>
+                        <input class="form-control" placeholder="Search" type="text" name="contains">
+                        <input class="form-control hidden" type="number" value="10" name="pageSize">
+                        <input class="form-control hidden" type="number" value="0" name="page">
+                    </div>
+                    <button type="submit" class="btn btn-info">Go</button>
+                </form>
                 <ul class="nav navbar-nav navbar-right">
                     {#user}
                         <li><a href="/my-pastes">My Pastes</a></li>

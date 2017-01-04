@@ -47,12 +47,13 @@ module.exports = {
 
         const paste = req.body;
 
-        if (!paste.pswd) {
+        if (!!paste.pswd) {
             delete paste.pswd;
         }
 
         if (req.user) {
             paste.user_id = req.user._id;
+            paste.author = req.user.username;
         }
 
         pastesServices
@@ -85,6 +86,23 @@ module.exports = {
             .catch(error => {
                 console.log(error);
                 res.redirect(500, '/error');
+            });
+    },
+    paged(req, res) {
+        const pageSize = +req.query.pageSize,
+            pageNumber = +req.query.page,
+            contains = req.query.contains;
+
+        pastesServices.paged({ pageSize, pageNumber, contains })
+            .then(pagedPastes => {
+                res.status(200).render('search', {
+                    user: req.user,
+                    pagedPastes: pagedPastes.map(projectPaste)
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ success: 'fail' });
             });
     }
 }

@@ -113,3 +113,8 @@ html, body {
     background: #375A7F;
     text-decoration: underline;
 }
+
+.search-glyph {
+    font-weight: bold;
+    font-size: 24px;
+}

@@ -41,9 +41,28 @@ function pastesByUser(user_id) {
                                         .toArray());
 }
 
+function paged(options) {
+
+    const filterOptions = {
+        visibility: 'public'
+    };
+
+    if(options.contains) {
+        filterOptions.name = { $regex: `.*${options.contains}.*` };
+    }
+
+    return connection.then(db => db.collection('pastes')
+                                    .find(filterOptions)
+                                    .sort({ dateCreated: -1 })
+                                    .skip(options.pageSize * options.pageNumber)
+                                    .limit(options.pageSize)
+                                    .toArray());
+}
+
 module.exports = {
     getById,
     createPaste,
     mostRecentNPastes,
-    pastesByUser
+    pastesByUser,
+    paged
 }
