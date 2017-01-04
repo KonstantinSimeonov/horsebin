@@ -1,6 +1,13 @@
 {>_layout/}
 
 {<mainContent}
+    <ul class="pagination">
+        <li><a href="/pastes?pageSize=10&page={pageInfo.left}">&laquo;</a></li>
+        {#pageInfo.pages}
+            <li><a href="/pastes?pageSize=10&page={.}">{.}</a></li>
+        {/pageInfo.pages}
+        <li><a href="/pastes?pageSize=10&page={pageInfo.right}">&raquo;</a></li>
+    </ul>
     <table class="table table-striped table-hover">
         <thead>
             <th>Title</th>
@@ -14,17 +21,17 @@
                     <td><a href="/pastes/{_id}/details" target="_blank">{name}</a></td>
                     <td>
                         {#lang}
-                            {.}
+                            <p class="text-warning">{.}</p>
                         {:else}
-                            unknown
+                            <p>unknown</p>
                         {/lang}
                     </td>
                     <td>{timeElapsedFromCreation}</td>
                     <td>
                         {#author}
-                            {.}
+                            <p class="text-info">{.}</p>
                         {:else}
-                            anonymous
+                            <p>anonymous</p>
                         {/author}
                     </td>
                 </tr>

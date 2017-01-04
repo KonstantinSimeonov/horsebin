@@ -47,7 +47,7 @@ module.exports = {
 
         const paste = req.body;
 
-        if (!!paste.pswd) {
+        if (!paste.pswd) {
             delete paste.pswd;
         }
 
@@ -56,8 +56,10 @@ module.exports = {
             paste.author = req.user.username;
         }
 
+        console.log(paste);
+
         pastesServices
-            .createPaste(req.body)
+            .createPaste(paste)
             .then(function (dbRes) {
                 const paste = dbRes.ops.pop();
 
@@ -93,11 +95,22 @@ module.exports = {
             pageNumber = +req.query.page,
             contains = req.query.contains;
 
+        const pager = [];
+
+        for(let leftmost = Math.max(pageNumber + 2, 5), i = leftmost; i >= 1 && leftmost - 5 <= i; i -= 1) {
+            pager.unshift(i - 1);
+        }
+
         pastesServices.paged({ pageSize, pageNumber, contains })
             .then(pagedPastes => {
                 res.status(200).render('search', {
                     user: req.user,
-                    pagedPastes: pagedPastes.map(projectPaste)
+                    pagedPastes: pagedPastes.map(projectPaste),
+                    pageInfo: {
+                        pages: pager,
+                        left: pageNumber - 1,
+                        right: pageNumber + 1
+                    }
                 });
             })
             .catch(err => {
