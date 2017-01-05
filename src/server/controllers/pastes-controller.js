@@ -1,33 +1,15 @@
 'use strict';
 
-// const pastesServices = require('../data/pastes-services'),
-//     langServices = require('../data/languages'),
-const moment = require('moment');
-
-function getNthIndex(n, symbol, str) {
-    let index = 0,
-        count = 0;
-
-    while (count < n && index < str.length) {
-        index = str.indexOf(symbol, index + 1);
-        count += 1;
-    }
-
-    return index;
-}
-
-function projectPaste(paste) {
-    paste.timeElapsedFromCreation = moment(new Date(paste.dateCreated)).fromNow();
-    return paste;
-}
+const { PasteViewModel, UserPasteViewModel } = require('../viewmodels');
 
 module.exports = (dataServices) => {
     const { pastes, languages } = dataServices;
 
     return {
         byId(req, res) {
-            const paste = projectPaste(req.paste),
-                mostRecentPastes = req.mostRecent.map(projectPaste);
+            console.log(req.paste);
+            const paste = new PasteViewModel(req.paste, '-visibility-dateCreated'),
+                mostRecentPastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated'));
 
             if (paste.lang) {
                 paste.lang = paste.lang.toLowerCase();
@@ -41,7 +23,7 @@ module.exports = (dataServices) => {
         },
         getCreate(req, res) {
             const languageNames = languages.getLanguageNamesForDropdown(),
-                pastes = req.mostRecent.map(projectPaste);
+                pastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated'));
 
             res.status(200).render('create-paste', {
                 user: req.user,
@@ -63,8 +45,6 @@ module.exports = (dataServices) => {
                 paste.author = req.user.username;
             }
 
-            console.log(paste);
-
             pastes
                 .createPaste(paste)
                 .then(function (dbRes) {
@@ -83,14 +63,9 @@ module.exports = (dataServices) => {
             pastes
                 .pastesByUser(user_id)
                 .then(userPastes => {
-                    const shortenedPastes = userPastes.map(p => {
-                        p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
-                        projectPaste(p);
+                    const shortenedPastes = userPastes.map(p => new UserPasteViewModel(p, '-visibility-dateCreated-content'));
 
-                        return p;
-                    });
-
-                    res.status(200).render('list-pastes', { user: req.user, pastes: userPastes });
+                    res.status(200).render('list-pastes', { user: req.user, pastes: shortenedPastes });
                 })
                 .catch(error => {
                     console.log(error);
@@ -113,7 +88,7 @@ module.exports = (dataServices) => {
                 .then(pagedPastes => {
                     res.status(200).render('search', {
                         user: req.user,
-                        pagedPastes: pagedPastes.map(projectPaste),
+                        pagedPastes: pagedPastes.map(p => new PasteViewModel(p, '-visibility-dateCreated')),
                         pageInfo: {
                             pages: pager,
                             left: pageNumber - 1,

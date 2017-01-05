@@ -5,7 +5,7 @@ const fs = require('fs'),
 
 module.exports = function (server) {
     fs.readdirSync(__dirname)
-      .filter(fileName => fileName.indexOf('-router.js') !== -1)
+      .filter(fileName => fileName.endsWith('-router.js'))
       .forEach(function (routerName) {
           const router = require(path.join(__dirname, '/' + routerName));
 
