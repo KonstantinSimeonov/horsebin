@@ -4,7 +4,7 @@ const GitHubStrategy = require('passport-github2'),
     users = require('../data/users-services'),
     GITHUB = require('../static-config').GITHUB;
 
-const callbackUrl = 'http://127.0.0.1:3001/auth/github/callback';
+const callbackUrl = '/auth/github/callback';
 
 const githubStrategy = new GitHubStrategy({
     clientID: GITHUB.CLIENT_ID,
@@ -12,7 +12,6 @@ const githubStrategy = new GitHubStrategy({
     callbackUrl: callbackUrl
 },
     function (accessToken, refreshToken, profile, done) {
-        console.log(profile.id);
         users
             .byGithubId(profile.id)
             .then(user => {

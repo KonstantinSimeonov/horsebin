@@ -1,8 +1,8 @@
 'use strict';
 
-const pastesServices = require('../data/pastes-services'),
-    langServices = require('../data/languages'),
-    moment = require('moment');
+// const pastesServices = require('../data/pastes-services'),
+//     langServices = require('../data/languages'),
+const moment = require('moment');
 
 function getNthIndex(n, symbol, str) {
     let index = 0,
@@ -21,107 +21,111 @@ function projectPaste(paste) {
     return paste;
 }
 
-module.exports = {
-    byId(req, res) {
-        const paste = projectPaste(req.paste),
-            mostRecentPastes = req.mostRecent.map(projectPaste);
-        
-        if(paste.lang) {
-            paste.lang = paste.lang.toLowerCase();
-        }
+module.exports = (dataServices) => {
+    const { pastes, languages } = dataServices;
 
-        res.status(200).render('paste-details', {
-            user: req.user,
-            paste: paste,
-            mostRecentPastes: mostRecentPastes
-        });
-    },
-    getCreate(req, res) {
-        const languageNames = langServices.getLanguageNamesForDropdown(),
-            pastes = req.mostRecent.map(projectPaste);
-        
-        res.status(200).render('create-paste', {
-            user: req.user,
-            langNames: languageNames,
-            mostRecentPastes: pastes
-        });
-    },
-    create(req, res) {
-        // TODO: validation
+    return {
+        byId(req, res) {
+            const paste = projectPaste(req.paste),
+                mostRecentPastes = req.mostRecent.map(projectPaste);
 
-        const paste = req.body;
+            if (paste.lang) {
+                paste.lang = paste.lang.toLowerCase();
+            }
 
-        if (!paste.pswd) {
-            delete paste.pswd;
-        }
-
-        if (req.user) {
-            paste.user_id = req.user._id;
-            paste.author = req.user.username;
-        }
-
-        console.log(paste);
-
-        pastesServices
-            .createPaste(paste)
-            .then(function (dbRes) {
-                const paste = dbRes.ops.pop();
-
-                res.redirect(`/pastes/${paste._id}/details`);
-            })
-            .catch(d => {
-                console.log(d);
-                res.json(d)
+            res.status(200).render('paste-details', {
+                user: req.user,
+                paste: paste,
+                mostRecentPastes: mostRecentPastes
             });
-    },
-    byUser(req, res) {
-        const user_id = req.user._id;
+        },
+        getCreate(req, res) {
+            const languageNames = languages.getLanguageNamesForDropdown(),
+                pastes = req.mostRecent.map(projectPaste);
 
-        pastesServices
-            .pastesByUser(user_id)
-            .then(pastes => {
-                const shortenedPastes = pastes.map(p => {
-                    p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
-                    projectPaste(p);
+            res.status(200).render('create-paste', {
+                user: req.user,
+                langNames: languageNames,
+                mostRecentPastes: pastes
+            });
+        },
+        create(req, res) {
+            // TODO: validation
 
-                    return p;
+            const paste = req.body;
+
+            if (!paste.pswd) {
+                delete paste.pswd;
+            }
+
+            if (req.user) {
+                paste.user_id = req.user._id;
+                paste.author = req.user.username;
+            }
+
+            console.log(paste);
+
+            pastes
+                .createPaste(paste)
+                .then(function (dbRes) {
+                    const paste = dbRes.ops.pop();
+
+                    res.redirect(`/pastes/${paste._id}/details`);
+                })
+                .catch(d => {
+                    console.log(d);
+                    res.json(d)
                 });
+        },
+        byUser(req, res) {
+            const user_id = req.user._id;
 
-                res.status(200).render('list-pastes', { user: req.user, pastes });
-            })
-            .catch(error => {
-                console.log(error);
-                res.redirect(500, '/error');
-            });
-    },
-    paged(req, res) {
-        const pageSize = +req.query.pageSize,
-            pageNumber = +req.query.page,
-            contains = req.query.contains,
-            author = req.query.author;
+            pastes
+                .pastesByUser(user_id)
+                .then(userPastes => {
+                    const shortenedPastes = userPastes.map(p => {
+                        p.content = p.content.slice(0, getNthIndex(5, '\n', p.content));
+                        projectPaste(p);
 
-        const pager = [];
+                        return p;
+                    });
 
-        for(let leftmost = Math.max(pageNumber + 2, 5), i = leftmost; i >= 1 && leftmost - 5 <= i; i -= 1) {
-            pager.unshift(i - 1);
-        }
-
-        pastesServices.paged({ pageSize, pageNumber, contains, author })
-            .then(pagedPastes => {
-                res.status(200).render('search', {
-                    user: req.user,
-                    pagedPastes: pagedPastes.map(projectPaste),
-                    pageInfo: {
-                        pages: pager,
-                        left: pageNumber - 1,
-                        right: pageNumber + 1,
-                        pageNumber
-                    }
+                    res.status(200).render('list-pastes', { user: req.user, pastes: userPastes });
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.redirect(500, '/error');
                 });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json({ success: 'fail' });
-            });
+        },
+        paged(req, res) {
+            const pageSize = +req.query.pageSize,
+                pageNumber = +req.query.page,
+                contains = req.query.contains,
+                author = req.query.author;
+
+            const pager = [];
+
+            for (let leftmost = Math.max(pageNumber + 2, 5), i = leftmost; i >= 1 && leftmost - 5 <= i; i -= 1) {
+                pager.unshift(i - 1);
+            }
+
+            pastes.paged({ pageSize, pageNumber, contains, author })
+                .then(pagedPastes => {
+                    res.status(200).render('search', {
+                        user: req.user,
+                        pagedPastes: pagedPastes.map(projectPaste),
+                        pageInfo: {
+                            pages: pager,
+                            left: pageNumber - 1,
+                            right: pageNumber + 1,
+                            pageNumber
+                        }
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json({ success: 'fail' });
+                });
+        }
     }
 }
