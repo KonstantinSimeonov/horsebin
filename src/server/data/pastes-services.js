@@ -63,10 +63,15 @@ function paged(options) {
                                     .toArray());
 }
 
+function count(options) {
+    return connection.then(db => db.collection('pastes').count(options || {}));
+}
+
 module.exports = {
     getById,
     createPaste,
     mostRecentNPastes,
     pastesByUser,
-    paged
+    paged,
+    count
 }

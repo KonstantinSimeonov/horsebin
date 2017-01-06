@@ -1,0 +1,20 @@
+{#pagedPastes}
+    <tr>
+        <td><a href="/pastes/{_id}/details" target="_blank">{name}</a></td>
+        <td>
+            {#lang}
+                <p class="text-warning">{.}</p>
+            {:else}
+                <p>unknown</p>
+            {/lang}
+        </td>
+        <td>{timeElapsedFromCreation}</td>
+        <td>
+            {#author}
+                <p class="text-info">{.}</p>
+            {:else}
+                <p>anonymous</p>
+            {/author}
+        </td>
+    </tr>
+{/pagedPastes}

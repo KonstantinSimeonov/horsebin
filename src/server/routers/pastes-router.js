@@ -12,5 +12,6 @@ module.exports = function (server, dataServices) {
         .get('/my-pastes', authMiddleware.isAuthenticated, pastesController.byUser)
         .get('/pastes/create', mostRecent5Pastes, pastesController.getCreate)
         .post('/pastes/create', pastesController.create)
-        .get('/pastes', pastesController.paged);
+        .get('/pastes', pastesController.getSearch)
+        .get('/pastes/search', pastesController.paged);
 }

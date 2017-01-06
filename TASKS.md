@@ -4,7 +4,7 @@
     - ordering
     - paging
 - theme change preview
-- implement password-protected paste access
+- ~~implement password-protected paste access~~
 - report on pastes
 - administration section
 - setup build process

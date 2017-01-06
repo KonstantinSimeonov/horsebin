@@ -72,6 +72,20 @@ module.exports = (dataServices) => {
                     res.redirect(500, '/error');
                 });
         },
+        getSearch(req, res) {
+            pastes
+                .count({ visibility: 'public' })
+                .then(count => {
+                    res.status(200).render('search', {
+                        user: req.user,
+                        pager: [1, 2, 3, 4, 5],
+                        left: -1,
+                        right: 6,
+                        pageNumber: 0,
+                        pagesCount: count / 10 | 0
+                    });
+                })
+        },
         paged(req, res) {
             const pageSize = +req.query.pageSize,
                 pageNumber = +req.query.page,
@@ -86,7 +100,7 @@ module.exports = (dataServices) => {
 
             pastes.paged({ pageSize, pageNumber, contains, author })
                 .then(pagedPastes => {
-                    res.status(200).render('search', {
+                    res.status(200).render('paste-table-rows', {
                         user: req.user,
                         pagedPastes: pagedPastes.map(p => new PasteViewModel(p, '-visibility-dateCreated')),
                         pageInfo: {
