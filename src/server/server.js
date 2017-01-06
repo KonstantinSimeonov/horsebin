@@ -26,6 +26,7 @@ require('./auth-config/passport')(server, dataServices);
 
 /* config end */
 
-require('./routers')(server);
+// routing
+require('./routers')(server, dataServices);
 
 server.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
