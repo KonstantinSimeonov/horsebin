@@ -22,7 +22,7 @@ server.set('view engine', 'dust');
 server.set('view options', { layout: false });
 
 // config auth
-require('./server-config/passport')(server, dataServices);
+require('./auth-config/passport')(server, dataServices);
 
 /* config end */
 
