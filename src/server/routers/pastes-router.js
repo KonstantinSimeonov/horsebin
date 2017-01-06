@@ -1,9 +1,9 @@
 'use strict';
 
-const data = require('../data'),
-    pastesController = require('../controllers/pastes-controller')(data),
+const dataServices = require('../data'),
+    pastesController = require('../controllers/pastes-controller')(dataServices),
     authMiddleware = require('../middlewares/authentication-middleware'),
-    pastesMiddleware = require('../middlewares/pastes-middleware');
+    pastesMiddleware = require('../middlewares/pastes-middleware')(dataServices);
 
 const mostRecent5Pastes = pastesMiddleware.mostRecentNPastes(5);
 
