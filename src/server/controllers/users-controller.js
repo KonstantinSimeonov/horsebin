@@ -1,8 +1,5 @@
 'use strict';
 
-// const usersServices = require('../data/users-services'),
-//     themeServices = require('../data/themes');
-
 module.exports = (dataServices) => {
 
     const { users, themes } = dataServices;
@@ -16,7 +13,7 @@ module.exports = (dataServices) => {
             });
         },
         register(req, res) {
-            themes.createUser(req.body).then(function (dbRes) {
+            users.createUser(req.body).then(function (dbRes) {
                 res.status(201).json({ success: true });
             })
                 .catch(function (err) {

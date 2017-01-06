@@ -5,10 +5,13 @@ const express = require('express'),
     kleiDust = require('klei-dust'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
+    dataServices = require('./data'),
     path = require('path'),
     PORT = process.env.PORT || 3001;
 
 /* config start */
+server.use('/public', express.static(path.join(__dirname, '../public')));
+
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser());
@@ -17,10 +20,9 @@ server.set('views', __dirname + '/views');
 server.engine('dust', kleiDust.dust);
 server.set('view engine', 'dust');
 server.set('view options', { layout: false });
-server.use('/public', express.static(path.join(__dirname, '../public')));
 
 // config auth
-require('./server-config/passport')(server);
+require('./server-config/passport')(server, dataServices);
 
 /* config end */
 

@@ -2,11 +2,12 @@
 
 const passport = require('passport'),
     session = require('express-session'),
-    users = require('../data/users-services'),
     localStrategy = require('./passport-local'),
     githubStrategy = require('./passport-github');
 
-module.exports = function (server) {
+module.exports = function (server, dataServices) {
+
+    const { users } = dataServices;
 
     // insert middleware
     server.use(session({ secret: 'secret horse' }));
@@ -14,8 +15,8 @@ module.exports = function (server) {
     server.use(passport.session());
 
     // use auth strategies
-    passport.use(localStrategy);
-    passport.use(githubStrategy);
+    require('./passport-github')(passport, dataServices);
+    require('./passport-local')(passport, dataServices);
 
     passport.serializeUser((user, done) => {
         if (user) {

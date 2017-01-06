@@ -63,7 +63,7 @@
             <label for="paste-pswd" class="col-lg-2 control-label" style="margin-right: 1em">Password</label>
             <div class="input-group">
                 <span class="input-group-addon">&#128274;</span>
-                <input class="form-control" id="paste-pswd" placeholder="Password" type="password" name="pswd">
+                <input class="form-control" id="paste-pswd" placeholder="Password" type="password" name="pswd" autocomplete="off">
                 <span class="input-group-btn">
                 <button id="reveal-btn" class="btn btn-default" type="button">Reveal</button>
                 </span>
