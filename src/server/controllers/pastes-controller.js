@@ -82,7 +82,7 @@ module.exports = (dataServices) => {
                         left: -1,
                         right: 6,
                         pageNumber: 0,
-                        pagesCount: count / 10 | 0
+                        pagesCount: Math.round(count / 10)
                     });
                 })
         },

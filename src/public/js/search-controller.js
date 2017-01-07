@@ -22,7 +22,7 @@ $(() => {
                 return $input.attr('name') + '=' + value;
             });
 
-        return getUrl + `?page=${currentPage}&pageSize=${pageSize}&` + [].slice.call(queryParams).filter(x => x !== '').join('&');
+        return getUrl + `?page=${currentPage - 1}&pageSize=${pageSize}&` + [].slice.call(queryParams).filter(x => x !== '').join('&');
     }
 
     function fillTable() {
