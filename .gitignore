@@ -6,6 +6,10 @@ npm-debug.log*
 # Visual Studio Code
 .vscode
 
+# Client builds
+*.min.css
+*.min.js
+
 # Runtime data
 pids
 *.pid
