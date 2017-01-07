@@ -102,13 +102,7 @@ module.exports = (dataServices) => {
                 .then(pagedPastes => {
                     res.status(200).render('paste-table-rows', {
                         user: req.user,
-                        pagedPastes: pagedPastes.map(p => new PasteViewModel(p, '-visibility-dateCreated')),
-                        pageInfo: {
-                            pages: pager,
-                            left: pageNumber - 1,
-                            right: pageNumber + 1,
-                            pageNumber
-                        }
+                        pagedPastes: pagedPastes.map(p => new PasteViewModel(p, '-visibility-dateCreated'))
                     });
                 })
                 .catch(err => {

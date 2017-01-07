@@ -4,7 +4,11 @@ $(function () {
     // TODO: expand
     const filetypeMap = {
         'javascript': 'js',
-        'haskell': 'hs'
+        'haskell': 'hs',
+        'csharp': 'cs',
+        'c++': 'cpp',
+        'c': 'c',
+        'java': 'java',
     };
 
     const $fetchBtn = $('#fetch-btn'),
