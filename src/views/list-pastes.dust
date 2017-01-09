@@ -35,8 +35,10 @@
 {/styles}
 
 {<scripts}
-<script src="/public/bower_components/prism/prism.js"></script>
-{#pastes}
+    <!-- build:js /public/js/prism.min.js -->
+    <script src="/public/bower_components/prism/prism.js"></script>
+    <!-- endbuild -->
+<!--{#pastes}
     <script src="/public/bower_components/prism/components/prism-{lang}.js"></script>
-{/pastes}
+{/pastes}-->
 {/scripts}

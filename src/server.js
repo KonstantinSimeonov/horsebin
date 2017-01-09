@@ -10,7 +10,7 @@ const express = require('express'),
     PORT = process.env.PORT || 3001;
 
 /* config start */
-server.use('/public', express.static(path.join(__dirname, '../public')));
+server.use('/public', express.static(path.join(__dirname, './public')));
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));

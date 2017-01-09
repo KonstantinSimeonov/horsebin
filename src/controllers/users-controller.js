@@ -49,7 +49,7 @@ module.exports = (dataServices) => {
 
             settings.theme = settings.theme.toLowerCase();
 
-            themes.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
+            users.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
         }
     }
 }

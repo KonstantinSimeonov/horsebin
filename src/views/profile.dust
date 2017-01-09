@@ -72,5 +72,7 @@
 {/mainContent}
 
 {<scripts}
+<!-- build:js /public/js/profile-controller.min.js -->
 <script src="/public/js/profile-controller.js"></script>
+<!-- endbuild -->
 {/scripts}

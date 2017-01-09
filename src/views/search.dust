@@ -63,5 +63,7 @@
 {/mainContent}
 
 {<scripts}
+<!-- build:js /public/js/search-controller.js -->
 <script src="/public/js/search-controller.js"></script>
+<!-- endbuild -->
 {/scripts}

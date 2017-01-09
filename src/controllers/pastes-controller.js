@@ -7,7 +7,6 @@ module.exports = (dataServices) => {
 
     return {
         byId(req, res) {
-            console.log(req.paste);
             const paste = new PasteViewModel(req.paste, '-visibility-dateCreated'),
                 mostRecentPastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated'));
 

@@ -8,7 +8,7 @@ let CACHE;
 module.exports = {
     getLanguageNamesForDropdown() {
         if(!CACHE) {
-            const prismJsPath = path.join(__dirname, '../../public/bower_components/prism/components'),
+            const prismJsPath = path.join(__dirname, '../public/bower_components/prism/components'),
             languageNames = fs.readdirSync(prismJsPath)
                                         // take every second element because there are minified files
                                         .filter((_, i) => i & 1)

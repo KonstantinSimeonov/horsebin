@@ -17,10 +17,13 @@ pre {
 }
 
 .paste-content {
-    display: inline-block;
-    min-height: 25em;
     width: 100%;
-    overflow: auto;
+}
+
+.paste-content > code {
+    display: block;
+    margin-left: 2.5em;
+    width: 100%;
 }
 
 #alerts-container {

@@ -8,7 +8,9 @@
     <meta name="author" content="Konstantin Simeonov">
     <title>npaste</title>
     <link rel="stylesheet" href="/public/bower_components/bootswatch/darkly/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/css/custom.min.css">
+    <!-- build:css /public/css/custom.min.css -->
+    <link rel="stylesheet" href="/public/css/custom.css">
+    <!-- endbuild -->
     {+styles/}
     <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -98,10 +100,13 @@
         </footer>
 
     <!-- scripts -->
+
+    <!-- build:js /public/js/layout.min.js -->
     <script src="/public/js/home-controller.js"></script>
     <script src="/public/js/html-requester.js"></script>
     <script src="/public/js/notifier.js"></script>
     <script src="/public/js/json-requester.js"></script>
+    <!-- endbuild -->
     {+scripts/}
 </body>
 

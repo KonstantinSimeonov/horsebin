@@ -80,5 +80,7 @@
 {/mainContent}
 
 {<scripts}
+<!-- build:js /public/js/create-paste.min.js -->
 <script src="/public/js/create-paste.js"></script>
+<!-- endbuild -->
 {/scripts}

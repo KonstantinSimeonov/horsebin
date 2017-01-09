@@ -8,10 +8,8 @@
     "url": "https://github.com/KonstantinSimeonov/npaste"
   },
   "scripts": {
-    "dev": "nodemon ./src/server/server.js",
-    "start": "node ./src/server/server.js",
-    "prestart": "gulp",
-    "build": "gulp",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./server/server.js",
     "postinstall": "bower install"
   },
   "author": "Konstantin Simeonov",
@@ -27,13 +25,14 @@
     "dustjs-linkedin": "^2.7.4",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
-    "install": "^0.8.2",
     "klei-dust": "^1.0.0",
     "moment": "^2.17.1",
     "mongodb": "^2.2.11",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
-    "passport-local": "^1.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
     "babel-preset-es2015": "^6.18.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
@@ -41,9 +40,9 @@
     "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^2.0.0"
-  },
-  "devDependencies": {
+    "gulp-uglify": "^2.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-useref": "^3.1.2",
     "nodemon": "^1.11.0"
   }
 }
