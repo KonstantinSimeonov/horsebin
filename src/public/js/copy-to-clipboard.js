@@ -1,16 +1,18 @@
 'use strict';
 
 $(() => {
-    $.fn.copyToClipboardBtn = function (textContainerSelector) {
+    $.fn.copyToClipboardBtn = function (selectorOrFunction) {
         const $this = $(this),
-            $container = $(textContainerSelector);
+            getText = (typeof selectorOrFunction === 'string') ? 
+                        () => $(selectorOrFunction).text() :
+                        selectorOrFunction;
 
         const $tmpInput = $('<textarea />'),
             $body = $(document.body);
 
         $this.on('click', function () {
             $body.append($tmpInput);
-            $tmpInput.val($(textContainerSelector).text());
+            $tmpInput.val(getText());
             $tmpInput.select();
             document.execCommand('copy');
             $tmpInput.remove();
@@ -18,4 +20,5 @@ $(() => {
     }
 
     $('#clone-btn').copyToClipboardBtn('code');
+    $('#copy-url-btn').copyToClipboardBtn(() => window.location.href);
 });

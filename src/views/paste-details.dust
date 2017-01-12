@@ -9,6 +9,7 @@
             </summary>
         </blockquote>
         <ul class="pager">
+            <li class="next"><a href="#" id="copy-url-btn">copy url</a></li>
             <li class="next"><a id="clone-btn" href="#">copy to clipboard</a></li>
             <li class="next"><a id="fetch-btn" href="#">fetch as file</a></li>
         </ul>
