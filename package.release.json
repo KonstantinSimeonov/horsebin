@@ -1,0 +1,21 @@
+{
+  "name": "npaste",
+  "version": "1.0.0",
+  "description": "Fast paste sharing app",
+  "main": "./server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KonstantinSimeonov/npaste"
+  },
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "author": "Konstantin Simeonov",
+  "license": "ISC",
+  "engines": {
+    "node": "7.3.0"
+  },
+  "dependencies": {
+
+  }
+}

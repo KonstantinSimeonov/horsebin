@@ -12,7 +12,7 @@ gulp.task('default', () => gulp
                             .pipe(useref({ searchPath: './src' }))
                             .pipe(gulpif('*.js', babel({ presets: ['es2015'] })))
                             .pipe(gulpif('*.js', uglify()))
-                            .pipe(gulpif('*.js', gulp.dest('../npaste-build/server')))
+                            .pipe(gulpif('*.js', gulp.dest('../npaste-build/')))
                             .pipe(gulpif('*.css', minifyCss()))
-                            .pipe(gulpif('*.css', gulp.dest('../npaste-build/server')))
-                            .pipe(gulpif('*.dust', gulp.dest('../npaste-build/server/views'))));
+                            .pipe(gulpif('*.css', gulp.dest('../npaste-build/')))
+                            .pipe(gulpif('*.dust', gulp.dest('../npaste-build/views'))));

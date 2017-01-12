@@ -1,6 +1,10 @@
 'use strict';
 
 $(() => {
+    // damn you browser autocomplete
+    $('input, textarea').attr('readonly', true);
+    $(document).on('click', 'input, textarea', ev => $(ev.target).removeAttr('readonly'));
+
     const $signUpBtn = $('#sign-up-btn'),
         $signInBtn = $('#sign-in-btn'),
         $overlay = $('<div class="gray-overlay" />');

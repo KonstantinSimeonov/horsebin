@@ -58,10 +58,9 @@
     <script src="/public/bower_components/prism/components/prism-c.js"></script>
     <script src="/public/bower_components/prism/components/prism-{paste.lang}.min.js"></script>
     <script src="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.js"></script>
-    {#isUsers}
-    <script src="/public/js/paste-details-controller.js"></script>
-    {/isUsers}
+    
     <!-- build:js /public/js/paste-details.min.js -->
+    <script src="/public/js/paste-details-controller.js"></script>
     <script src="/public/js/copy-to-clipboard.js"></script>
     <script src="/public/js/fetch-as-file.js"></script>
     <!-- endbuild -->
