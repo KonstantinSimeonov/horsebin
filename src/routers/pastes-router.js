@@ -13,5 +13,7 @@ module.exports = function (server, dataServices) {
         .get('/pastes/create', mostRecent5Pastes, pastesController.getCreate)
         .post('/pastes/create', pastesController.create)
         .get('/pastes', pastesController.getSearch)
+        .post('/pastes/:pasteId/edit', pastesController.editContent)
+        .get('/pastes/:pasteId/embedded', pastesMiddleware.pasteById, pastesController.embeded)
         .get('/pastes/search', pastesController.paged);
 }

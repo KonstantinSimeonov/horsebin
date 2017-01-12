@@ -9,15 +9,35 @@
             </summary>
         </blockquote>
         <ul class="pager">
+            {#isUsers}
+            <li class="next"><a href="#" id="edit-btn">edit</a></li>
+            {/isUsers}
             <li class="next"><a href="#" id="copy-url-btn">copy url</a></li>
             <li class="next"><a id="clone-btn" href="#">copy to clipboard</a></li>
             <li class="next"><a id="fetch-btn" href="#">fetch as file</a></li>
         </ul>
+        {#isUsers}
+        <form action="/pastes/{paste._id}/edit" class="form-horizontal bs-component hidden form-edit-paste" method="POST">
+            <fieldset>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <textarea class="form-control" rows="15" id="paste-content" name="content"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        {/isUsers}
         <pre class="paste-content language-{paste.lang} line-numbers">
             <code>
                 {paste.content}
             </code>
         </pre>
+
     </article>
 {/mainContent}
 
@@ -38,7 +58,9 @@
     <script src="/public/bower_components/prism/components/prism-c.js"></script>
     <script src="/public/bower_components/prism/components/prism-{paste.lang}.min.js"></script>
     <script src="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.js"></script>
-
+    {#isUsers}
+    <script src="/public/js/paste-details-controller.js"></script>
+    {/isUsers}
     <!-- build:js /public/js/paste-details.min.js -->
     <script src="/public/js/copy-to-clipboard.js"></script>
     <script src="/public/js/fetch-as-file.js"></script>

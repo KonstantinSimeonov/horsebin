@@ -63,6 +63,10 @@ function paged(options) {
                                     .toArray());
 }
 
+function editContent(_id, author, content) {
+    return connection.then(db => db.collection('pastes').findOneAndUpdate({ _id: mongo.ObjectID(_id), author }, { $set: { content } }))
+}
+
 function count(options) {
     return connection.then(db => db.collection('pastes').count(options || {}));
 }
@@ -72,6 +76,7 @@ module.exports = {
     createPaste,
     mostRecentNPastes,
     pastesByUser,
+    editContent,
     paged,
     count
 }

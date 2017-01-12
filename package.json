@@ -9,8 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "start": "node ./server/server.js",
-    "postinstall": "bower install"
+    "start": "node ./server/server.js"
   },
   "author": "Konstantin Simeonov",
   "license": "ISC",

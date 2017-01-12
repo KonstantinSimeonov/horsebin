@@ -1,5 +1,7 @@
 'use strict';
 
+const Prism = require('prismjs');
+
 const { PasteViewModel, UserPasteViewModel } = require('../viewmodels');
 
 module.exports = (dataServices) => {
@@ -17,8 +19,41 @@ module.exports = (dataServices) => {
             res.status(200).render('paste-details', {
                 user: req.user,
                 paste: paste,
-                mostRecentPastes: mostRecentPastes
+                mostRecentPastes: mostRecentPastes,
+                isUsers: req.user && (req.user.username === paste.author)
             });
+        },
+        editContent(req, res) {
+            const id = req.params.pasteId,
+                newContent = req.body.content,
+                author = req.user ? req.user.username : null;
+
+            if(author === null) {
+                return res.status(403).render('unauthorized');
+            }
+
+            pastes
+                .editContent(id, author, newContent)
+                .then(success => {
+                    console.log(success);
+                    res.redirect(req.headers.referer);
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.redirect(req.headers.referer);
+                })
+        },
+        embeded(req, res) {
+            const paste = req.paste;
+
+            if(paste.lang) {
+                paste.lang = paste.lang.toLowerCase();
+            }
+            paste.content = Prism.highlight(paste.content, Prism.languages.java);
+            console.log(paste.content);
+
+            res.status(200).send(`<link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css"></link><pre class="line-numbers language-${paste.lang}"><code>${paste.content}</code>
+            </pre>`)
         },
         getCreate(req, res) {
             const languageNames = languages.getLanguageNamesForDropdown(),
