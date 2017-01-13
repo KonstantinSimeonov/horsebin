@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css">
+<style>
+    pre code {
+        font-size: 18px;
+    }
+</style>
 <pre class="line-numbers language-${lang}">
     <code>{content|s}</code>
 </pre>
