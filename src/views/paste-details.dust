@@ -50,7 +50,7 @@
     {#user}
         <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-{user.settings.theme}.css">
     {:else}
-        <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css">
+        <link rel="stylesheet" href="/public/bower_components/prism/themes/prism-okaidia.css">
     {/user}
 
 {/styles}

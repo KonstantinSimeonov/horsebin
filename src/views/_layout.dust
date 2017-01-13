@@ -14,6 +14,7 @@
     {+styles/}
     <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://buttons.github.io/buttons.js"></script>
     
 </head>
 
@@ -40,6 +41,16 @@
                     <button type="submit" class="btn btn-info">Go</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="github-btn-container">
+                        <!-- Place this tag where you want the button to render. -->
+                    <a class="github-button" 
+                       href="https://github.com/KonstantinSimeonov/npaste"
+                       data-style="mega"
+                       data-count-href="https://github.com/KonstantinSimeonov/npaste"
+                       data-count-api="/repos/KonstantinSimeonov/npaste#stargazers_count"
+                       data-count-aria-label="# stargazers on GitHub"
+                       aria-label="Star KonstantinSimeonov/npaste on GitHub">Star</a>
+                    </li>
                     {#user}
                         <li><a href="/my-pastes">My Pastes</a></li>
                     {/user}

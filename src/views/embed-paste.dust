@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css">
+<link rel="stylesheet" href="/public/bower_components/prism/themes/prism-okaidia.css">
 <style>
     pre code {
         font-size: 18px;
