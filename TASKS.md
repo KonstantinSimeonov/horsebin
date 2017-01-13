@@ -5,6 +5,7 @@
     - paging
 - theme change preview
 - ~~implement password-protected paste access~~
+- ~~embedding with iframe~~
 - report on pastes
 - administration section
 - setup build process
