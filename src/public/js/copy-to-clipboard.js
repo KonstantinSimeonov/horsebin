@@ -18,7 +18,4 @@ $(() => {
             $tmpInput.remove();
         });
     }
-
-    $('#clone-btn').copyToClipboardBtn('code');
-    $('#copy-url-btn').copyToClipboardBtn(() => window.location.href);
 });

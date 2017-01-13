@@ -1,6 +1,8 @@
 'use strict';
 
-const Prism = require('prismjs');
+const PrismLoader = require('./prism-loader');
+
+const Prism = PrismLoader.createInstance(PrismLoader.components);
 
 const { PasteViewModel, UserPasteViewModel } = require('../viewmodels');
 
@@ -44,16 +46,12 @@ module.exports = (dataServices) => {
                 })
         },
         embeded(req, res) {
-            const paste = req.paste;
+            let { content, lang } = req.paste;
 
-            if(paste.lang) {
-                paste.lang = paste.lang.toLowerCase();
-            }
-            paste.content = Prism.highlight(paste.content, Prism.languages.java);
-            console.log(paste.content);
+            lang = lang.toLowerCase();
+            content = Prism.highlight(content, Prism.languages.cpp, Prism.languages.cpp);
 
-            res.status(200).send(`<link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css"></link><pre class="line-numbers language-${paste.lang}"><code>${paste.content}</code>
-            </pre>`)
+            res.status(200).render('embed-paste', { content, lang });
         },
         getCreate(req, res) {
             const languageNames = languages.getLanguageNamesForDropdown(),

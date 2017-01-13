@@ -12,6 +12,8 @@
             {#isUsers}
             <li class="next"><a href="#" id="edit-btn">edit</a></li>
             {/isUsers}
+            <li class="next"><a href="#" id="btn-get-embedded" data-url="/pastes/{paste._id}/embedded">embed</a></li>
+            <li class="next"><a href="/pastes/{paste._id}/embedded">raw</a></li>
             <li class="next"><a href="#" id="copy-url-btn">copy url</a></li>
             <li class="next"><a id="clone-btn" href="#">copy to clipboard</a></li>
             <li class="next"><a id="fetch-btn" href="#">fetch as file</a></li>
@@ -42,7 +44,7 @@
 {/mainContent}
 
 {<styles}
-    <link rel="stylesheet" href="../public/bower_components/prism/themes/prism.css">
+    <link rel="stylesheet" href="/public/bower_components/prism/themes/prism.css">
     <link rel="stylesheet" href="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.css">
     <!-- render user-selected theme -->
     {#user}
@@ -60,8 +62,8 @@
     <script src="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.js"></script>
     
     <!-- build:js /public/js/paste-details.min.js -->
-    <script src="/public/js/paste-details-controller.js"></script>
     <script src="/public/js/copy-to-clipboard.js"></script>
     <script src="/public/js/fetch-as-file.js"></script>
+    <script src="/public/js/paste-details-controller.js"></script>
     <!-- endbuild -->
 {/scripts}

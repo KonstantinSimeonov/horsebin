@@ -1,5 +1,4 @@
-<pre class="{paste.lang} line-numbers">
-    <code>
-        {paste.content}
-    </code>
+<link rel="stylesheet" href="/public/bower_components/prism/themes/prism-solarizedlight.css">
+<pre class="line-numbers language-${lang}">
+    <code>{content|s}</code>
 </pre>
