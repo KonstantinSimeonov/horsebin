@@ -44,7 +44,6 @@
 {/mainContent}
 
 {<styles}
-    <link rel="stylesheet" href="/public/bower_components/prism/themes/prism.css">
     <link rel="stylesheet" href="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.css">
     <!-- render user-selected theme -->
     {#user}

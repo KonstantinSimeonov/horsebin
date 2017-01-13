@@ -14,7 +14,6 @@
     {+styles/}
     <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://buttons.github.io/buttons.js"></script>
     
 </head>
 
@@ -42,14 +41,8 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="github-btn-container">
-                        <!-- Place this tag where you want the button to render. -->
-                    <a class="github-button" 
-                       href="https://github.com/KonstantinSimeonov/npaste"
-                       data-style="mega"
-                       data-count-href="https://github.com/KonstantinSimeonov/npaste"
-                       data-count-api="/repos/KonstantinSimeonov/npaste#stargazers_count"
-                       data-count-aria-label="# stargazers on GitHub"
-                       aria-label="Star KonstantinSimeonov/npaste on GitHub">Star</a>
+                    <!-- maybe extract in partial? -->
+                    <iframe allowtransparency="true" scrolling="no" style="width: 94px; height: 28px; border: medium none;" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fnpaste&amp;text=Star&amp;data-count-api=%2Frepos%2FKonstantinSimeonov%2Fnpaste%23stargazers_count&amp;data-count-href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fnpaste&amp;data-count-aria-label=%23%20stargazers%20on%20GitHub&amp;data-style=mega&amp;data-icon=&amp;aria-label=Star%20KonstantinSimeonov%2Fnpaste%20on%20GitHub" frameborder="0"></iframe>
                     </li>
                     {#user}
                         <li><a href="/my-pastes">My Pastes</a></li>
