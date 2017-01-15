@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 
-module.exports = {
+module.exports = _ => ({
     loginLocal(req, res, next) {
         const auth = passport.authenticate('local', (error, user) => {
             if (error) {
@@ -50,4 +50,4 @@ module.exports = {
             res.status(403).redirect('/unauthorized');
         }
     }
-}
+});

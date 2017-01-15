@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function (server, dataServices) {
-    const usersController = require('../controllers/users-controller')(dataServices),
-        authMiddleware = require('../middlewares/authentication-middleware');
+module.exports = function (server, middlewares, controllers) {
+    const { usersController } = controllers,
+        { authMiddleware } = middlewares;
 
     server
         .get('/profile', authMiddleware.isAuthenticated, usersController.getProfile)

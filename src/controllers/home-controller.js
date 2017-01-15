@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = {
+module.exports = _ => ({
     index(req, res) {
         res.redirect('/pastes/create');
     }
-}
+});
