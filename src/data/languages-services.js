@@ -5,8 +5,8 @@ const fs = require('fs'),
 
 let CACHE;
 
-module.exports = {
-    getLanguageNamesForDropdown() {
+module.exports = [
+    function getLanguageNamesForDropdown() {
         if(!CACHE) {
             const prismJsPath = path.join(__dirname, '../public/bower_components/prism/components'),
             languageNames = fs.readdirSync(prismJsPath)
@@ -25,4 +25,4 @@ module.exports = {
         
         return CACHE;
     }
-}
+]

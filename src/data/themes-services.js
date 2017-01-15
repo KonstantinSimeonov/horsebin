@@ -5,8 +5,8 @@ const fs = require('fs'),
 
 let CACHE;
 
-module.exports = {
-    getDropdownThemes() {
+module.exports = [
+    function getDropdownThemes() {
 
         if (!CACHE) {
 
@@ -23,4 +23,4 @@ module.exports = {
 
         return CACHE;
     }
-}
+]
