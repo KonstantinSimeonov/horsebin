@@ -12,6 +12,7 @@
     - ~~minify/concatenate js and css~~
     - ~~build/install packages locally, push only ready-to-launch project to production~~
     - research for a smarter way to do builds
+- Documentation with jsdoc
 - refactor
     - **specify concrete refactorings**
     - have a good look at controller methods and fix inconsistencies
