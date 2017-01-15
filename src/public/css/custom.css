@@ -125,3 +125,11 @@ html, body {
 iframe {
     margin-top: 15%;
 }
+
+.pager .red a {
+    background-color: #D11F41;
+}
+
+.pager .red a:hover {
+    background-color: #D11F5D;
+}
