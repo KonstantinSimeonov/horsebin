@@ -9,6 +9,16 @@
 - report on pastes
 - administration section
 - setup build process
-    - minify/concatenate js and css
+    - ~~minify/concatenate js and css~~
+    - ~~build/install packages locally, push only ready-to-launch project to production~~
+    - research for a smarter way to do builds
 - refactor
-    - specify concrete refactorings
+    - **specify concrete refactorings**
+    - have a good look at controller methods and fix inconsistencies
+    - refactor data service functions to not contain `connection.then(db => db.collection(...)...)`
+    - get that static config folder outta here
+    - introduce view models to extract mapping and validation logic from controllers
+        - are es6 classes really necessary there? can functions be used instead?
+        - ~~paste details view model~~
+        - ~~user paste view model~~
+        - embedded paste view model
