@@ -4,6 +4,6 @@
         font-size: 18px;
     }
 </style>
-<pre class="line-numbers language-${lang}">
-    <code>{content|s}</code>
+<pre class="line-numbers language-${paste.lang}">
+    <code>{paste.content|s}</code>
 </pre>

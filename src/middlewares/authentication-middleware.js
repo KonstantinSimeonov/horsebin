@@ -24,9 +24,6 @@ module.exports = {
 
         auth(req, res, next);
     },
-    //  .get('/auth/github', passport.authenticate('github', { scope: 'user' }), (req, res) => { })
-    //     .get('/auth/github/callback',
-    //      passport.authenticate('github', { failureRedirect: '/gosho' }), (req, res) => res.redirect('/home'))
     loginGithub(req, res, next) {
         passport.authenticate('github', { scope: 'user' })(req, res, next);
     },

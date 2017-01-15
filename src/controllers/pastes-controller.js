@@ -1,10 +1,6 @@
 'use strict';
 
-const PrismLoader = require('./prism-loader');
-
-const Prism = PrismLoader.createInstance(PrismLoader.components);
-
-const { PasteViewModel, UserPasteViewModel } = require('../viewmodels');
+const { PasteViewModel, UserPasteViewModel, EmbedPasteViewModel } = require('../viewmodels');
 
 module.exports = (dataServices) => {
     const { pastes, languages } = dataServices;
@@ -13,10 +9,6 @@ module.exports = (dataServices) => {
         byId(req, res) {
             const paste = new PasteViewModel(req.paste, '-visibility-dateCreated'),
                 mostRecentPastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated'));
-
-            if (paste.lang) {
-                paste.lang = paste.lang.toLowerCase();
-            }
 
             res.status(200).render('paste-details', {
                 user: req.user,
@@ -46,12 +38,9 @@ module.exports = (dataServices) => {
                 })
         },
         embeded(req, res) {
-            let { content, lang } = req.paste;
+            const paste = new EmbedPasteViewModel(req.paste);
 
-            lang = lang.toLowerCase();
-            content = Prism.highlight(content, Prism.languages.cpp, Prism.languages.cpp);
-
-            res.status(200).render('embed-paste', { content, lang });
+            res.status(200).render('embed-paste', { paste });
         },
         getCreate(req, res) {
             const languageNames = languages.getLanguageNamesForDropdown(),
@@ -110,10 +99,6 @@ module.exports = (dataServices) => {
                 .then(count => {
                     res.status(200).render('search', {
                         user: req.user,
-                        pager: [1, 2, 3, 4, 5],
-                        left: -1,
-                        right: 6,
-                        pageNumber: 0,
                         pagesCount: Math.ceil(count / 10)
                     });
                 })
@@ -123,12 +108,6 @@ module.exports = (dataServices) => {
                 pageNumber = +req.query.page,
                 contains = req.query.contains,
                 author = req.query.author;
-
-            const pager = [];
-
-            for (let leftmost = Math.max(pageNumber + 2, 5), i = leftmost; i >= 1 && leftmost - 5 <= i; i -= 1) {
-                pager.unshift(i - 1);
-            }
 
             pastes.paged({ pageSize, pageNumber, contains, author })
                 .then(pagedPastes => {
