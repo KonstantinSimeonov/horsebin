@@ -1,5 +1,7 @@
 'use strict';
 
+const { UserProfileViewModel } = require('../viewmodels');
+
 module.exports = (dataServices) => {
 
     const { users, themes } = dataServices;
@@ -30,15 +32,9 @@ module.exports = (dataServices) => {
         },
         getProfile(req, res) {
             if (req.user) {
-                const dropdownThemes = themes.getDropdownThemes();
+                const dropdownThemes = themes.getDropdownThemes(),
+                    user = new UserProfileViewModel(req.user);
 
-                if (!req.user.settings) {
-                    req.user.settings = { theme: 'solarizedlight' };
-                } else if (!req.user.settings.theme) {
-                    req.user.settings.theme = 'solarizedlight';
-                }
-
-                req.user.settings.theme = req.user.settings.theme[0].toUpperCase() + req.user.settings.theme.slice(1);
                 return res.status(200).render('profile', { user: req.user, themes: dropdownThemes });
             }
 
