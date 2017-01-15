@@ -55,15 +55,17 @@
 {/styles}
 
 {<scripts}
-    <script src="/public/bower_components/prism/components/prism-core.js"></script>
-    {#paste.dependencies}
-        <script src="/public/bower_components/prism/components/prism-{.}.min.js"></script>
-    {/paste.dependencies}
-    <script src="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.js"></script>
-    
     <!-- build:js /public/js/paste-details.min.js -->
     <script src="/public/js/copy-to-clipboard.js"></script>
     <script src="/public/js/fetch-as-file.js"></script>
     <script src="/public/js/paste-details-controller.js"></script>
     <!-- endbuild -->
+
+    <script src="/public/bower_components/prism/components/prism-core.js"></script>
+    
+    {#paste.dependencies}
+        <script src="/public/bower_components/prism/components/prism-{.}.min.js"></script>
+    {/paste.dependencies}
+
+    <script src="/public/bower_components/prism/plugins/line-numbers/prism-line-numbers.js"></script>
 {/scripts}
