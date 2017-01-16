@@ -16,10 +16,9 @@ module.exports = (dataServices) => {
                     isUsers: req.user && (req.user.username === paste.author)
                 };
 
-            if (req.user && req.user.likedPastesIds && (req.user.likedPastesIds.indexOf(paste._id.toString()) !== -1)) {
-                console.log('what');
-                viewData.likedByUser = true;
-            }
+            viewData.likedByUser = req.user &&
+                req.user.likedPastesIds &&
+                (req.user.likedPastesIds.indexOf(paste._id.toString()) !== -1);
 
             res.status(200).render('paste-details', viewData);
         },
@@ -34,14 +33,8 @@ module.exports = (dataServices) => {
 
             pastes
                 .editContent(id, author, newContent)
-                .then(success => {
-                    console.log(success);
-                    res.redirect(req.headers.referer);
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.redirect(req.headers.referer);
-                })
+                .then(success => res.redirect(req.headers.referer))
+                .catch(err => res.redirect(req.headers.referer));
         },
         embeded(req, res) {
             const paste = new EmbedPasteViewModel(req.paste);
@@ -128,18 +121,19 @@ module.exports = (dataServices) => {
                 });
         },
         toggleLike(req, res) {
-            const pasteId = req.params.pasteId;
+            const pasteId = req.params.pasteId,
+                hasLikedPaste = req.user.likedPastesIds && req.user.likedPastesIds.indexOf(pasteId) !== -1;
 
-            if (req.user.likedPastesIds && req.user.likedPastesIds.indexOf(pasteId) !== -1) {
+            if (hasLikedPaste) {
                 return pastes
-                        .updateLike(pasteId, req.user._id, false)
-                        .then(updatedPasteAndUser => {
-                            const unlikedPaste = updatedPasteAndUser[0].value;
-                            unlikedPaste.likesCount = ~~unlikedPaste.likesCount - 1;
+                            .updateLike(pasteId, req.user._id, false)
+                            .then(updatedPasteAndUser => {
+                                const unlikedPaste = updatedPasteAndUser[0].value;
+                                unlikedPaste.likesCount = ~~unlikedPaste.likesCount - 1;
 
-                            res.status(200).json({ likesCount: unlikedPaste.likesCount });
-                        })
-                        .catch(err => console.log(err) || res.status(500).json(err));
+                                res.status(200).json({ likesCount: unlikedPaste.likesCount });
+                            })
+                            .catch(err => console.log(err) || res.status(500).json(err));
             }
 
             pastes

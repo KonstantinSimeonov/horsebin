@@ -33,7 +33,7 @@ module.exports = (dataServices) => {
         getProfile(req, res) {
             if (req.user) {
                 const dropdownThemes = themes.getDropdownThemes(),
-                    user = new UserProfileViewModel(req.user);
+                    user = new UserProfileViewModel(req.user, '-likedPastesIds');
 
                 return res.status(200).render('profile', { user: req.user, themes: dropdownThemes });
             }
