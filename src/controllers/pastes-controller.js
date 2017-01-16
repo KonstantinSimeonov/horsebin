@@ -135,9 +135,9 @@ module.exports = (dataServices) => {
                         .updateLike(pasteId, req.user._id, false)
                         .then(updatedPasteAndUser => {
                             const unlikedPaste = updatedPasteAndUser[0].value;
-                            unlikedPaste.likesCount -= 1;
+                            unlikedPaste.likesCount = ~~unlikedPaste.likesCount - 1;
 
-                            res.status(200).json(unlikedPaste);
+                            res.status(200).json({ likesCount: unlikedPaste.likesCount });
                         })
                         .catch(err => console.log(err) || res.status(500).json(err));
             }
@@ -146,9 +146,9 @@ module.exports = (dataServices) => {
                 .updateLike(pasteId, req.user._id, true)
                 .then(updatedPasteAndUser => {
                     const likedPaste = updatedPasteAndUser[0].value;
-                    likedPaste.likesCount += 1;
+                    likedPaste.likesCount = ~~likedPaste.likesCount + 1;
 
-                    res.status(201).json(likedPaste);
+                    res.status(201).json({ likesCount: likedPaste.likesCount });
                 });
         }
     }

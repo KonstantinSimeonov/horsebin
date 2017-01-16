@@ -10,17 +10,17 @@ $(() => {
         $overlay = $('<div class="gray-overlay" />');
 
     function closeDialog() {
+        const $dialogWindow = $('.dialog-window');
+        $dialogWindow.remove().removeAttr('open');
         $overlay.remove();
-        $('.dialog-window').remove();
     }
 
     function showForm(serverRoute) {
         return htmlRequester
             .getHtml(serverRoute)
             .then(form => {
-                $('body')
-                    .append($overlay)
-                    .append(form);
+                $overlay.appendTo($(document.body));
+                $(form).attr('open', true).appendTo($(document.body));
 
                 $('#btn-close').on('click', closeDialog);
 
