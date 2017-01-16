@@ -8,6 +8,9 @@
                 <small>{#paste.lang}{.}, {/paste.lang}posted <time datetime="{paste.dateCreated}">{paste.timeElapsedFromCreation}</time></small>
             </summary>
         </blockquote>
+        <a class="heart {#likedByUser}heart-inverse{/likedByUser} pull-left" href="#" id="heart-btn" data-paste_id="{paste._id}">
+            <span class="likes-counter">{#paste.likesCount}{.}{:else}0{/paste.likesCount}</span>
+        </a>
         <ul class="pager">
             {#isUsers}
             <li class="next"><a href="#" id="edit-btn">edit</a></li>

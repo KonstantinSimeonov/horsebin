@@ -17,5 +17,6 @@ module.exports = function (server, middlewares, controllers) {
         .get('/pastes', pastesController.getSearch)
         .post('/pastes/:pasteId/edit', pastesController.editContent)
         .get('/pastes/:pasteId/embedded', pastesMiddleware.pasteById, pastesController.embeded)
+        .post('/pastes/:pasteId/heart', authMiddleware.isAuthenticated, pastesController.toggleLike)
         .get('/pastes/search', pastesController.paged);
 }

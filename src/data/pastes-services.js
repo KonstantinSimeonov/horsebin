@@ -76,7 +76,7 @@ const serviceFunctions = [
             .then(data => {
                 CACHE.mostRecent = data;
                 CACHE.expirationTime = new Date().getTime() / 1000 + 30;
-                return data; 
+                return data;
             });
     },
 
@@ -93,7 +93,7 @@ const serviceFunctions = [
             .sort(sortByDateDesc)
             .toArray();
     },
-    
+
     /**
      * @function paged
      * @param {Db} db Db object provided by mongo driver. Injected automatically.
@@ -142,6 +142,44 @@ const serviceFunctions = [
      */
     function count(db, options) {
         return db.collection('pastes').count(options || {});
+    },
+
+    /**
+     * @function like
+     * @param {Db} db Db object provided by mongo driver. Injected automatically.
+     * @param {string} pasteId Database id of the paste to like.
+     * @param {string} userId Database id of the user that likes the paste.
+     * @returns {Promise.<[Object]>}
+     */
+    // function like(db, pasteId, userId) {
+    //     const incrementLikes = db.collection('pastes')
+    //         .findOneAndUpdate({ _id: mongo.ObjectID(pasteId) }, { $inc: { likesCount: 1 } }),
+    //         addLikeToUser = db.collection('users')
+    //             .findOneAndUpdate({ _id: mongo.ObjectID(userId) }, { $push: { likedPastesIds: pasteId } });
+
+    //     return Promise.all([incrementLikes, addLikeToUser]);
+    // },
+
+    // function unlike(db, pasteId, userId) {
+    //     const decrementLikes = db.collection('pastes')
+    //         .findOneAndUpdate({ _id: mongo.ObjectID(pasteId) }, { $inc: { likesCount: -1 } }),
+    //         removeLikeFromUser = db.collection('users')
+    //             .findOneAndUpdate({ _id: mongo.ObjectID(userId) }, { $pull: { likedPastesIds: pasteId } });
+
+    //     return Promise.all([decrementLikes, removeLikeFromUser]);
+    // },
+
+    function updateLike(db, pasteId, userId, isLike) {
+        const increment = isLike ? 1 : -1,
+            arrayAction = isLike ? '$push' : '$pull',
+            updateLikesCount = db.collection('pastes')
+                                    .findOneAndUpdate({ _id: mongo.ObjectID(pasteId) },
+                                                      { $inc: { likesCount: increment } }),
+            updateUserLikes = db.collection('users')
+                                .findOneAndUpdate({ _id: mongo.ObjectID(userId) },
+                                                  { [arrayAction]: { likedPastesIds: pasteId } });
+
+        return Promise.all([ updateLikesCount, updateUserLikes ]);
     }
 ];
 

@@ -8,21 +8,27 @@ module.exports = (dataServices) => {
     return {
         byId(req, res) {
             const paste = new PasteViewModel(req.paste, '-visibility-dateCreated'),
-                mostRecentPastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated'));
+                mostRecentPastes = req.mostRecent.map(p => new PasteViewModel(p, '-visibility-dateCreated')),
+                viewData = {
+                    user: req.user,
+                    paste: paste,
+                    mostRecentPastes: mostRecentPastes,
+                    isUsers: req.user && (req.user.username === paste.author)
+                };
 
-            res.status(200).render('paste-details', {
-                user: req.user,
-                paste: paste,
-                mostRecentPastes: mostRecentPastes,
-                isUsers: req.user && (req.user.username === paste.author)
-            });
+            if (req.user && req.user.likedPastesIds && (req.user.likedPastesIds.indexOf(paste._id.toString()) !== -1)) {
+                console.log('what');
+                viewData.likedByUser = true;
+            }
+
+            res.status(200).render('paste-details', viewData);
         },
         editContent(req, res) {
             const id = req.params.pasteId,
                 newContent = req.body.content,
                 author = req.user ? req.user.username : null;
 
-            if(author === null) {
+            if (author === null) {
                 return res.status(403).render('unauthorized');
             }
 
@@ -119,6 +125,30 @@ module.exports = (dataServices) => {
                 .catch(err => {
                     console.log(err);
                     res.status(500).json({ success: 'fail' });
+                });
+        },
+        toggleLike(req, res) {
+            const pasteId = req.params.pasteId;
+
+            if (req.user.likedPastesIds && req.user.likedPastesIds.indexOf(pasteId) !== -1) {
+                return pastes
+                        .updateLike(pasteId, req.user._id, false)
+                        .then(updatedPasteAndUser => {
+                            const unlikedPaste = updatedPasteAndUser[0].value;
+                            unlikedPaste.likesCount -= 1;
+
+                            res.status(200).json(unlikedPaste);
+                        })
+                        .catch(err => console.log(err) || res.status(500).json(err));
+            }
+
+            pastes
+                .updateLike(pasteId, req.user._id, true)
+                .then(updatedPasteAndUser => {
+                    const likedPaste = updatedPasteAndUser[0].value;
+                    likedPaste.likesCount += 1;
+
+                    res.status(201).json(likedPaste);
                 });
         }
     }

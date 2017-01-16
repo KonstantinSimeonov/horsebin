@@ -1,7 +1,7 @@
 {>_layout/}
 
 {<mainContent}
-<form class="form-horizontal bs-component" action="/pastes/create" method="POST">
+<form id="form-create-paste" class="form-horizontal bs-component" action="/pastes/create" method="POST">
     <fieldset>
         <legend>New paste</legend>
         <div class="form-group">
@@ -72,7 +72,7 @@
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button type="reset" class="btn btn-default">Clear</button> &nbsp; &nbsp;
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button id="btn-submit-paste" type="submit" class="btn btn-primary">Create</button>
             </div>
         </div>
     </fieldset>

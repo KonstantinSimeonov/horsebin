@@ -1,8 +1,13 @@
 'use strict';
 
 $(() => {
-    $('#clone-btn').copyToClipboardBtn('code');
-    $('#copy-url-btn').copyToClipboardBtn(() => window.location.href);
+    const $cloneBtn = $('#clone-btn'),
+        $copyUrlBtn = $('#copy-url-btn'),
+        $heartBtn = $('#heart-btn'),
+        $likesCounter = $heartBtn.find('.likes-counter');
+
+    $cloneBtn.copyToClipboardBtn('code');
+    $copyUrlBtn.copyToClipboardBtn(() => window.location.href);
 
     const $embedBtn = $('#btn-get-embedded'),
         rawUrl = 'https://' + window.location.host + $embedBtn.data('url'),
@@ -15,6 +20,19 @@ $(() => {
 
         $editForm.find('textarea').text($('code').text());
         $editForm.removeClass('hidden');
+    });
+
+    $heartBtn.on('click', ev => {
+        const pasteId = $(ev.target).data('paste_id');
+
+        jsonRequester
+            .post(`/pastes/${pasteId}/heart`, {})
+            .then(paste => {
+                console.log(paste);
+                $likesCounter.text(~~paste.likesCount);
+                $heartBtn.toggleClass('heart-inverse');
+            })
+            .catch(failure => console.log(failure) || notifier.failure(failure.msg));
     });
 
 });
