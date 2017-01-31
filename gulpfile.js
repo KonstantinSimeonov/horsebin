@@ -22,6 +22,6 @@ gulp.task('bundles', () => gulp
                             .pipe(gulpif('*.js', gulp.dest(`${BUILD_DIR}/`)))
                             .pipe(gulpif('*.css', minifyCss()))
                             .pipe(gulpif('*.css', gulp.dest(`${BUILD_DIR}/`)))
-                            .pipe(gulpif('*.dust', gulp.dest(`${BUILD_DIR}/views))));
+                            .pipe(gulpif('*.dust', gulp.dest(`${BUILD_DIR}/views`))));
 
 gulp.task('default', ['paste-themes', 'bundles']);

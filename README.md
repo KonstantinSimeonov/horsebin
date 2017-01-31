@@ -1,2 +1,2 @@
-# NPaste
-- Application for fast paste sharing. Hosted on [https://npaste.herokuapp.com/](https://npaste.herokuapp.com/)
+# horsebin
+- Application for fast paste sharing. Hosted on [https://horsebin.herokuapp.com/](https://horsebin.herokuapp.com/)
