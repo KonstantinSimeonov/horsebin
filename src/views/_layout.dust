@@ -6,7 +6,7 @@
     <meta name="keyword" content="paste code open source share">
     <meta name="description" content="Platform for quick paste sharing">
     <meta name="author" content="Konstantin Simeonov">
-    <title>npaste</title>
+    <title>horsebin</title>
     <link rel="stylesheet" href="/public/bower_components/bootswatch/darkly/bootstrap.min.css">
     <!-- build:css /public/css/custom.min.css -->
     <link rel="stylesheet" href="/public/css/custom.css">
@@ -22,7 +22,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="/home" class="navbar-brand">NPaste</a>
+                <a href="/home" class="navbar-brand">horsebin</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
@@ -101,6 +101,8 @@
              Powered by <a href="https://nodejs.org">Node.js</a> with <a href="https://expressjs.com/">Express</a>, 
               <a href="http://www.dustjs.com/">Dust.js</a>, <a href="http://prismjs.com/">PrismJs</a> 
                and <a href="https://jquery.com/">jQuery</a>
+               <br>
+               and <strong>horses</strong>
         </footer>
 
     <!-- scripts -->

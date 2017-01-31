@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILD_DIR="../npaste-build"
+BUILD_DIR="../horsebin-build"
 
 if [ ! -d "$BUILD_DIR" ]; then
     echo "Creating directory ..."
