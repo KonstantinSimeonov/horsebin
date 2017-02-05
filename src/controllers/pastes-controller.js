@@ -1,6 +1,16 @@
 'use strict';
 
-const { PasteViewModel, UserPasteViewModel, EmbedPasteViewModel } = require('../viewmodels');
+const { PasteViewModel, UserPasteViewModel, EmbedPasteViewModel } = require('../viewmodels'),
+    createValidator = require('fluent-schemer'),
+    { string, number, object } = createValidator().schemas;
+
+const createPasteSchema = object({
+    name: string().pattern(/^[a-z|\d|\s]{2,20}$/i),
+    lang: string().minlength(1).maxlength(20),
+    content: string().required().minlength(4).maxlength(1024 * 500),
+    pswd: string().minlength(2).maxlength(20)
+}),
+    searchTermSchema = string().required().pattern(/^[a-z|\d|\s]{0,20}$/i);
 
 module.exports = (dataServices) => {
     const { pastes, languages } = dataServices;
@@ -54,10 +64,25 @@ module.exports = (dataServices) => {
         create(req, res) {
             // TODO: validation
 
-            const paste = req.body;
+            const paste = {
+                content: req.body.content,
+                name: req.body.name || null,
+                lang: req.body.lang || null,
+                pswd: req.body.pswd || null
+            };
 
-            if (!paste.pswd) {
-                delete paste.pswd;
+            const { errors, errorsCount } = createPasteSchema.validate(paste);
+
+            if (errorsCount) {
+                const langNames = languages.getLanguageNamesForDropdown(),
+                    mostRecentPastes = [];
+
+                return res.status(400).render('create-paste', {
+                    user: req.user,
+                    errors,
+                    langNames,
+                    mostRecentPastes
+                });
             }
 
             if (req.user) {
@@ -103,12 +128,20 @@ module.exports = (dataServices) => {
                 })
         },
         paged(req, res) {
-            const pageSize = +req.query.pageSize,
-                pageNumber = +req.query.page,
-                contains = req.query.contains,
-                author = req.query.author;
+            const pageObject = {
+                pageSize: Math.min(~~req.query.pageSize, 10),
+                pageNumber: Math.max(~~req.query.page, 0)
+            };
 
-            pastes.paged({ pageSize, pageNumber, contains, author })
+            if(!searchTermSchema.validate(req.query.author).errorsCount) {
+                pageObject.author = req.query.author;
+            }
+
+            if(!searchTermSchema.validate(req.query.contains).errorsCount) {
+                pageObject.contains = req.query.contains;
+            }
+
+            pastes.paged(pageObject)
                 .then(pagedPastes => {
                     res.status(200).render('paste-table-rows', {
                         user: req.user,
@@ -126,14 +159,14 @@ module.exports = (dataServices) => {
 
             if (hasLikedPaste) {
                 return pastes
-                            .updateLike(pasteId, req.user._id, false)
-                            .then(updatedPasteAndUser => {
-                                const unlikedPaste = updatedPasteAndUser[0].value;
-                                unlikedPaste.likesCount = ~~unlikedPaste.likesCount - 1;
+                    .updateLike(pasteId, req.user._id, false)
+                    .then(updatedPasteAndUser => {
+                        const unlikedPaste = updatedPasteAndUser[0].value;
+                        unlikedPaste.likesCount = ~~unlikedPaste.likesCount - 1;
 
-                                res.status(200).json({ likesCount: unlikedPaste.likesCount });
-                            })
-                            .catch(err => console.log(err) || res.status(500).json(err));
+                        res.status(200).json({ likesCount: unlikedPaste.likesCount });
+                    })
+                    .catch(err => console.log(err) || res.status(500).json(err));
             }
 
             pastes

@@ -8,7 +8,7 @@ module.exports = (dataServices) => {
             pastes
                 .getById(req.params.pasteId)
                 .then(paste => {
-                    if (paste.pswd !== req.query.pswd) {
+                    if (paste.pswd && paste.pswd !== req.query.pswd) {
                         return res.render('unlock-paste', {
                             pasteId: req.params.pasteId,
                             wrongPswd: !!req.query.pswd

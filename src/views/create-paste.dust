@@ -5,12 +5,18 @@
     <fieldset>
         <legend>New paste</legend>
         <div class="form-group">
+            {#errors.name}
+                <p class="text-danger col-xs-offset-2">The name must be between 2 and 20 symbols and can contain only alphanumerical symbol.</p>
+            {/errors.name}
             <label for="paste-name" class="col-lg-2 control-label">Name</label>
             <div class="col-lg-10">
                 <input class="form-control" id="paste-name" placeholder="Paste name" type="text" name="name">
             </div>
         </div>
         <div class="form-group">
+            {#errors.lang}
+                <p class="text-danger col-xs-offset-2">The language name must be between 1 and 20 symbols long.</p>
+            {/errors.lang}
             <label for="select" class="col-lg-2 control-label">Language</label>
             <div class="col-lg-10">
                 <!--<select class="form-control" name="lang">
@@ -30,6 +36,9 @@
             </div>
         </div>
         <div class="form-group">
+            {#errors.content}
+                <p class="text-danger col-xs-offset-2">The paste content must be between 4 and 50000 symbols long.</p>
+            {/errors.content}
             <label for="textArea" class="col-lg-2 control-label">Content</label>
             <div class="col-lg-10">
                 <textarea class="form-control" rows="15" id="textArea" name="content"></textarea>
@@ -40,15 +49,13 @@
             <div class="col-lg-10">
                 <div class="radio">
                     <label>
-                                <input name="visibility" value="public" checked type="radio">
-                                Public
-                            </label>
+                        <input name="visibility" value="public" checked type="radio">Public
+                    </label>
                 </div>
                 <div class="radio">
                     <label>
-                                <input name="visibility" value="unlisted" type="radio">
-                                Unlisted
-                            </label>
+                        <input name="visibility" value="unlisted" type="radio">Unlisted
+                    </label>
                 </div>
                 <div class="radio">
                     <label>
@@ -60,6 +67,9 @@
         </div>
         <div class="form-group collapse" id="password-controls">
             <!-- FIX THIS(p.s. css sucks) -->
+            {#errors.pswd}
+                <p class="text-danger col-xs-offset-2">The password must be between 2 and 20 symbols long.</p>
+            {/errors.pswd}
             <label for="paste-pswd" class="col-lg-2 control-label" style="margin-right: 1em">Password</label>
             <div class="input-group">
                 <span class="input-group-addon">&#128274;</span>

@@ -42,7 +42,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="github-btn-container">
                     <!-- maybe extract in partial? -->
-                    <iframe allowtransparency="true" scrolling="no" style="width: 94px; height: 28px; border: medium none;" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fnpaste&amp;text=Star&amp;data-count-api=%2Frepos%2FKonstantinSimeonov%2Fnpaste%23stargazers_count&amp;data-count-href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fnpaste&amp;data-count-aria-label=%23%20stargazers%20on%20GitHub&amp;data-style=mega&amp;data-icon=&amp;aria-label=Star%20KonstantinSimeonov%2Fnpaste%20on%20GitHub" frameborder="0"></iframe>
+                    <iframe allowtransparency="true" scrolling="no" style="width: 94px; height: 28px; border: medium none;" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fhorsebin&amp;text=Star&amp;data-count-api=%2Frepos%2FKonstantinSimeonov%2Fhorsebin%23stargazers_count&amp;data-count-href=https%3A%2F%2Fgithub.com%2FKonstantinSimeonov%2Fhorsebin&amp;data-count-aria-label=%23%20stargazers%20on%20GitHub&amp;data-style=mega&amp;data-icon=&amp;aria-label=Star%20KonstantinSimeonov%2Fhorsebin%20on%20GitHub" frameborder="0"></iframe>
                     </li>
                     {#user}
                         <li><a href="/my-pastes">My Pastes</a></li>
@@ -97,7 +97,7 @@
         
     </section>
     <footer class="footer">
-            <a href="https://github.com/KonstantinSimeonov/npaste">Open source project</a>. 
+            <a href="https://github.com/KonstantinSimeonov/horsebin">Open source project</a>. 
              Powered by <a href="https://nodejs.org">Node.js</a> with <a href="https://expressjs.com/">Express</a>, 
               <a href="http://www.dustjs.com/">Dust.js</a>, <a href="http://prismjs.com/">PrismJs</a> 
                and <a href="https://jquery.com/">jQuery</a>
