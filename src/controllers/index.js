@@ -4,14 +4,15 @@ const fs = require('fs'),
     path = require('path');
 
 const controllers = {};
-module.exports = dataServices => {
+
+module.exports = (dataServices, validate) => {
     fs.readdirSync(__dirname)
         .filter(fileName => fileName.endsWith('-controller.js'))
         .forEach(fileName => {
             const controllerName = fileName.split('-').shift() + 'Controller',
                 controllerPath = path.join(__dirname, '/' + fileName);
 
-            controllers[controllerName] = require(controllerPath)(dataServices);
+            controllers[controllerName] = require(controllerPath)(dataServices, validate);
         });
 
     return controllers;

@@ -8,6 +8,7 @@ module.exports = dataServices => {
             const { content } = req.body,
                 author = req.user.username,
                 pasteId = req.params.pasteId;
+                
             reports
                 .createReport({ pasteId, content, author })
                 .then(dbRes => res.status(201).json({ success: true, msg: 'Report created!' }))

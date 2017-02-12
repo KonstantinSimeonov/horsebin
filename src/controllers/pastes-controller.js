@@ -1,18 +1,8 @@
 'use strict';
 
-const { PasteViewModel, UserPasteViewModel, EmbedPasteViewModel } = require('../viewmodels'),
-    createValidator = require('fluent-schemer'),
-    { string, number, object } = createValidator().schemas;
+const { PasteViewModel, UserPasteViewModel, EmbedPasteViewModel } = require('../viewmodels');
 
-const createPasteSchema = object({
-    name: string().pattern(/^[a-z|\d|\s]{2,20}$/i),
-    lang: string().minlength(1).maxlength(20),
-    content: string().required().minlength(4).maxlength(1024 * 500),
-    pswd: string().minlength(2).maxlength(20)
-}),
-    searchTermSchema = string().required().pattern(/^[a-z|\d|\s]{0,20}$/i);
-
-module.exports = (dataServices) => {
+module.exports = (dataServices, validate) => {
     const { pastes, languages } = dataServices;
 
     return {
@@ -36,6 +26,10 @@ module.exports = (dataServices) => {
             const id = req.params.pasteId,
                 newContent = req.body.content,
                 author = req.user ? req.user.username : null;
+
+            if(!validate.pasteContent(newContent).isValid) {
+                return res.status(400).json({ success: false });
+            }
 
             if (author === null) {
                 return res.status(403).render('unauthorized');
@@ -62,32 +56,31 @@ module.exports = (dataServices) => {
             });
         },
         create(req, res) {
-            // TODO: validation
-
-            const paste = {
+            const user = req.user,
+                paste = {
                 content: req.body.content,
                 name: req.body.name || null,
                 lang: req.body.lang || null,
                 pswd: req.body.pswd || null
             };
 
-            const { errors, errorsCount } = createPasteSchema.validate(paste);
-
-            if (errorsCount) {
+            const { errors, isValid } = validate.newPaste(paste);
+            
+            if (!isValid) {
                 const langNames = languages.getLanguageNamesForDropdown(),
                     mostRecentPastes = [];
 
                 return res.status(400).render('create-paste', {
-                    user: req.user,
+                    user,
                     errors,
                     langNames,
                     mostRecentPastes
                 });
             }
 
-            if (req.user) {
-                paste.user_id = req.user._id;
-                paste.author = req.user.username;
+            if (user) {
+                paste.user_id = user._id;
+                paste.author = user.username;
             }
 
             pastes
@@ -133,11 +126,11 @@ module.exports = (dataServices) => {
                 pageNumber: Math.max(~~req.query.page, 0)
             };
 
-            if(!searchTermSchema.validate(req.query.author).errorsCount) {
+            if(!validate.searchTerm(req.query.author).isValid) {
                 pageObject.author = req.query.author;
             }
 
-            if(!searchTermSchema.validate(req.query.contains).errorsCount) {
+            if(!validate.searchTerm(req.query.contains).isValid) {
                 pageObject.contains = req.query.contains;
             }
 

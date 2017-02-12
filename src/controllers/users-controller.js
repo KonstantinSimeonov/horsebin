@@ -2,30 +2,48 @@
 
 const { UserProfileViewModel } = require('../viewmodels');
 
-module.exports = (dataServices) => {
-
+module.exports = (dataServices, validate) => {
     const { users, themes } = dataServices;
 
     return {
         getRegistrationForm(req, res) {
             res.status(200).render('sign-up', {
-                formLegend: 'npaste - Sign up',
+                formLegend: 'horsebin - Sign up',
                 formAction: '/sign-up',
                 submitBtnMsg: 'Sign up'
             });
         },
         register(req, res) {
-            users.createUser(req.body).then(function (dbRes) {
-                res.status(201).json({ success: true });
-            })
-                .catch(function (err) {
+            const user = {
+                username: req.body.username,
+                password: req.body.password
+            }
+
+            const { errors, isValid: isValidUser } = validate.newUser(user);
+
+            if (!isValidUser) {
+                return res.status(400).json({
+                    success: false,
+                    errors: {
+                        username: errors.username,
+                        password: errors.password
+                    }
+                });
+            }
+
+            users
+                .createUser(user)
+                .then(dbResponse => {
+                    res.status(201).json({ success: true });
+                })
+                .catch(err => {
                     console.log(err);
                     res.json(err);
                 });
         },
         signIn(req, res) {
             res.status(200).render('sign-up', {
-                formLegend: 'npaste - Sign in',
+                formLegend: 'horsebin - Sign in',
                 formAction: '/sign-in',
                 submitBtnMsg: 'Sign in'
             });

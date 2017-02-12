@@ -6,6 +6,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     dataServices = require('./data'),
+    validate = require('./utils/validate'),
     path = require('path'),
     PORT = process.env.PORT || 3001;
 
@@ -27,8 +28,8 @@ require('./auth-config/passport')(server, dataServices);
 /* config end */
 
 // routing
-const controllers = require('./controllers')(dataServices),
-    middlewares = require('./middlewares')(dataServices);
+const controllers = require('./controllers')(dataServices, validate),
+    middlewares = require('./middlewares')(dataServices, validate);
 
 require('./routers')(server, middlewares, controllers);
 
