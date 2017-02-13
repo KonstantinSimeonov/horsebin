@@ -1,20 +1,20 @@
 {
-  "name": "npaste",
+  "name": "horsebin",
   "version": "1.0.0",
   "description": "Fast paste sharing app",
   "main": "./src/server/server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KonstantinSimeonov/npaste"
+    "url": "https://github.com/KonstantinSimeonov/horsebin"
   },
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "start": "node ./server/server.js"
   },
-  "author": "Konstantin Simeonov",
+  "author": "Konstantin Simeonov<kon.simeonov@protonmail.com>",
   "license": "ISC",
   "engines": {
-    "node": "7.3.0"
+    "node": "7.5.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -24,6 +24,7 @@
     "dustjs-linkedin": "^2.7.4",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "fluent-schemer": "^0.11.1",
     "klei-dust": "^1.0.0",
     "moment": "^2.17.1",
     "mongodb": "^2.2.11",
@@ -39,9 +40,9 @@
     "gulp-clean-css": "^2.3.2",
     "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
-    "gulp-if": "^2.0.2",
     "gulp-useref": "^3.1.2",
     "nodemon": "^1.11.0"
   }

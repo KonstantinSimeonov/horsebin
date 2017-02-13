@@ -29,7 +29,7 @@ $(() => {
     }
 
     function onSignInSuccess(res, username) {
-        notifier.success(res.msg);
+        notifier.success(res.message);
         closeDialog();
 
         $('#username').text(username);

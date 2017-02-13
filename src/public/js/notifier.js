@@ -16,10 +16,10 @@ const notifier = (() => {
 
     function showAlert($alertElement, message, fadeTime) {
         $alertElement.find('.alert-msg').text(message);
-        $alertElement.appendTo($alertsContainer).removeClass('out');
+        $alertElement.appendTo($alertsContainer).removeClass('hidden');
         
         setTimeout(() => {
-            $alertElement.addClass('out');
+            $alertElement.addClass('hidden');
         }, +fadeTime || DEFAULT_FADEOUT);
     }
 
