@@ -1,16 +1,14 @@
 <dialog class="dialog-window col-xs-offset-3 col-lg-6">
-  <form class="form-horizontal col-lg-12 vertical-offset-2" action="/sign-up" method="POST">
+  <form class="form-horizontal col-lg-12 vertical-offset-2" action="/sign-in" method="POST">
     <fieldset>
-      <legend>Join horsebin:</legend>
+        <legend>Welcome</legend>
       <div class="form-group">
         <div class="col-lg-12">
-          <p class="text-info text-center username-constraints">Between 3 and 20 symbols long. Only alphanumerical symbols and underscore are allowed.</p>
-          <input class="form-control text-center" id="username-input" placeholder="Username" type="text" name="username" required>
+          <input class="form-control text-center" id="username-input" placeholder="Username" type="text" name="username" required pattern="[a-z]{2,10}">
         </div>
       </div>
       <div class="form-group">
         <div class="col-lg-12">
-          <p class="text-info text-center password-constraints">Between 6 and 20 symbols long.</p>
           <input class="form-control text-center" id="pswd-input" placeholder="Password" type="password" name="password" required>
         </div>
       </div>
@@ -20,7 +18,7 @@
           &nbsp; &nbsp;
           <button type="reset" class="btn btn-default">Clear</button>
           &nbsp; &nbsp;
-          <button id="btn-submit" type="submit" class="btn btn-primary">Sign up</button>
+          <button id="btn-submit" type="submit" class="btn btn-primary">Sign in</button>
         </div>
       </div>
     </fieldset>

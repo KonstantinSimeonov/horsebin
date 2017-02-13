@@ -10,7 +10,7 @@ module.exports = _ => ({
             }
 
             if (!user) {
-                return res.status(400).json({ success: false, msg: 'Invalid username or password!' });
+                return res.status(400).json({ success: false, message: 'Invalid username or password!' });
             }
 
             req.logIn(user, error => {
@@ -18,7 +18,7 @@ module.exports = _ => ({
                     return next(error);
                 }
 
-                return res.status(200).json({ success: true, msg: `Welcome, ${user.username}` });
+                return res.status(200).json({ success: true, message: `Welcome, ${user.username}` });
             });
         });
 

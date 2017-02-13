@@ -9,7 +9,7 @@ const htmlRequester = (() => {
             $.ajax({
                 url: url,
                 method: 'GET',
-                contentType: 'application/json',
+                contentType: 'text/html',
                 success: resolve,
                 error: reject
             });
@@ -19,7 +19,7 @@ const htmlRequester = (() => {
     return {
         getHtml(url) {
             if (!CACHE[url]) {
-                return requestHtml(url);
+                CACHE[url] = requestHtml(url);
             }
 
             return Promise.resolve(CACHE[url]);

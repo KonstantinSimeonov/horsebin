@@ -68,6 +68,8 @@ const serviceFunctions = [
             }
         }
 
+        console.log('what what');
+
         return db.collection('pastes')
             .find(visibilityPublicFilter, mostRecentPastesFields)
             .sort(sortByDateDesc)

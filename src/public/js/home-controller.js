@@ -3,7 +3,7 @@
 $(() => {
     // damn you browser autocomplete
     $('input, textarea').attr('readonly', true);
-    $(document).on('click', 'input, textarea', ev => $(ev.target).removeAttr('readonly'));
+    $(document).on('focus', 'input, textarea', ev => $(ev.target).removeAttr('readonly'));
 
     const $signUpBtn = $('#sign-up-btn'),
         $signInBtn = $('#sign-in-btn'),
@@ -56,7 +56,33 @@ $(() => {
                             return jsonRequester.post('/sign-in', { username, password });
                         })
                         .then(res => onSignInSuccess(res, username))
-                        .catch(err => notifier.failure(err.msg));
+                        .catch(res => {
+                            const { errors: { username, password } } = res.data;
+
+                            if (username.length) {
+                                notifier.failure('Invalid username!');
+
+                                $('.username-constraints')
+                                    .removeClass('text-info')
+                                    .addClass('text-danger');
+                            } else {
+                                $('.username-constraints')
+                                    .removeClass('text-danger')
+                                    .addClass('text-info');
+                            }
+
+                            if (password.length) {
+                                notifier.failure('Invalid password!');
+
+                                $('.password-constraints')
+                                    .removeClass('text-info')
+                                    .addClass('text-danger');
+                            } else {
+                                $('.password-constraints')
+                                    .removeClass('text-danger')
+                                    .addClass('text-info');
+                            }
+                        });
                 });
             });
     });
@@ -73,7 +99,7 @@ $(() => {
                     jsonRequester
                         .post('/sign-in', { username, password })
                         .then(res => onSignInSuccess(res, username))
-                        .catch(err => notifier.failure(err.msg));
+                        .catch(res => notifier.failure(res.data.message));
                 });
             });
     });

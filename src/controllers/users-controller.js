@@ -7,11 +7,7 @@ module.exports = (dataServices, validate) => {
 
     return {
         getRegistrationForm(req, res) {
-            res.status(200).render('sign-up', {
-                formLegend: 'horsebin - Sign up',
-                formAction: '/sign-up',
-                submitBtnMsg: 'Sign up'
-            });
+            res.status(200).render('sign-up');
         },
         register(req, res) {
             const user = {
@@ -42,11 +38,7 @@ module.exports = (dataServices, validate) => {
                 });
         },
         signIn(req, res) {
-            res.status(200).render('sign-up', {
-                formLegend: 'horsebin - Sign in',
-                formAction: '/sign-in',
-                submitBtnMsg: 'Sign in'
-            });
+            res.status(200).render('sign-in');
         },
         getProfile(req, res) {
             if (req.user) {

@@ -61,11 +61,12 @@ module.exports = (dataServices, validate) => {
                 content: req.body.content,
                 name: req.body.name || null,
                 lang: req.body.lang || null,
-                pswd: req.body.pswd || null
+                pswd: req.body.pswd || null,
+                visibility: req.body.visibility || 'public'
             };
 
             const { errors, isValid } = validate.newPaste(paste);
-            
+
             if (!isValid) {
                 const langNames = languages.getLanguageNamesForDropdown(),
                     mostRecentPastes = [];

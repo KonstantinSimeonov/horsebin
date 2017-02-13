@@ -1,6 +1,21 @@
 'use strict';
 
 const jsonRequester = (() => {
+
+    function ajaxOptions(method, data, resolve, reject) {
+        return {
+            method: method,
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: resolve,
+            error: (request, textStatus, errorThrown) => reject({
+                reason: textStatus,
+                data: JSON.parse(request.responseText),
+                errorThrown
+            })
+        }
+    }
+
     return {
         get(url, params) {
             return new Promise((resolve, reject) => {
@@ -15,37 +30,13 @@ const jsonRequester = (() => {
             })
         },
         post(url, data) {
-            return new Promise((resolve, reject) => {
-                $.ajax(url, {
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: resolve,
-                    error: reject
-                })
-            });
+            return new Promise((resolve, reject) => $.ajax(url, ajaxOptions('POST', data, resolve, reject)));
         },
         put(url, data) {
-            return new Promise((resolve, reject) => {
-                $.ajax(url, {
-                    method: 'PUT',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: resolve,
-                    error: reject
-                })
-            });
+            return new Promise((resolve, reject) => $.ajax(url, ajaxOptions('PUT', data, resolve, reject)));
         },
         delete(url, data) {
-            return new Promise((resolve, reject) => {
-                $.ajax(url, {
-                    method: 'DELETE',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: resolve,
-                    error: reject
-                })
-            });
+            return new Promise((resolve, reject) => $.ajax(url, ajaxOptions('DELETE', data, resolve, reject)));
         }
     };
 })();
