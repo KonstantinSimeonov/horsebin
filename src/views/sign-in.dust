@@ -1,7 +1,7 @@
 <dialog class="dialog-window col-xs-offset-3 col-lg-6">
   <form class="form-horizontal col-lg-12 vertical-offset-2" action="/sign-in" method="POST">
     <fieldset>
-        <legend>Welcome</legend>
+        <legend>Welcome back</legend>
       <div class="form-group">
         <div class="col-lg-12">
           <input class="form-control text-center" id="username-input" placeholder="Username" type="text" name="username" required pattern="[a-z]{2,10}">

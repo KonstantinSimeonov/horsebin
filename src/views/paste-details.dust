@@ -11,7 +11,7 @@
                 </small>
             </summary>
         </blockquote>
-        <a class="heart {#likedByUser}heart-inverse{/likedByUser} pull-left" href="#" id="heart-btn" data-paste_id="{paste._id}">
+        <a class="{#user}logged{/user} heart {#likedByUser}heart-inverse{/likedByUser} pull-left" href="#" id="heart-btn" data-paste_id="{paste._id}">
             <span class="likes-counter">{#paste.likesCount}{.}{:else}0{/paste.likesCount}</span>
         </a>
         <ul class="pager">

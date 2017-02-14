@@ -23,6 +23,12 @@ $(() => {
     });
 
     $heartBtn.on('click', ev => {
+        const $target = $(ev.target);
+
+        if(!$target.hasClass('logged')) {
+            return $('#sign-in-btn').click();
+        }
+
         const pasteId = $(ev.target).data('paste_id');
 
         jsonRequester
