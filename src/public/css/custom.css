@@ -41,8 +41,16 @@ pre {
     margin-top: 5em;
 }
 
+.underlined {
+    text-decoration: underline;
+}
+
 html, body {
     height: 100%;
+}
+
+#paste-details small::before {
+    content: '';
 }
 
 #container {

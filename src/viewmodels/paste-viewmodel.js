@@ -38,6 +38,15 @@ module.exports = {
             viewmodel.dependencies = getDependencyComponents(viewmodel.lang, languages).map(langName => langName.toLowerCase());
         }
 
+        console.log(obj);
+
+        const bytesCount = Buffer.byteLength(obj.content || '', 'utf16');
+        if(bytesCount < 100) {
+            viewmodel.size = bytesCount + ' bytes';
+        } else {
+            viewmodel.size = Math.round(bytesCount / 100) / 10 + ' KB';
+        }
+
         viewmodel.timeElapsedFromCreation = moment(new Date(obj.dateCreated)).fromNow();
     }
 }

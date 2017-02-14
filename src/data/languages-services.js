@@ -16,9 +16,7 @@ module.exports = [
                                         .map(x => x.split('-')
                                                     .pop()
                                                     .split('.')
-                                                    .shift())
-                                        // capital case
-                                        .map(langName => langName[0].toUpperCase() + langName.slice(1));
+                                                    .shift());
 
             CACHE = languageNames;
         }

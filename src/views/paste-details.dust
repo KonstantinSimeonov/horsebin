@@ -5,7 +5,10 @@
         <blockquote>
             <summary>
                 <p class="paste-name">{paste.name}</p>
-                <small>{#paste.lang}{.}, {/paste.lang}posted <time datetime="{paste.dateCreated}">{paste.timeElapsedFromCreation}</time></small>
+                <small>
+                    <span class="text-warning">~{paste.size} {#paste.lang}<strong class="underlined">{.}</strong>{/paste.lang}</span>
+                    <p>pasted <time datetime="{paste.dateCreated}">{paste.timeElapsedFromCreation}</time></p>
+                </small>
             </summary>
         </blockquote>
         <a class="heart {#likedByUser}heart-inverse{/likedByUser} pull-left" href="#" id="heart-btn" data-paste_id="{paste._id}">
