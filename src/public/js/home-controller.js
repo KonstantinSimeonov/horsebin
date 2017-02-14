@@ -38,7 +38,9 @@ $(() => {
             <li><a href="/sign-out">Sign out</a></li>
         `);
 
-        $('.nav.navbar-nav.navbar-right').prepend($('<li><a href="/my-pastes">My pastes</a></li>'))
+        $('.nav.navbar-nav.navbar-right').prepend($('<li><a href="/my-pastes">My pastes</a></li>'));
+
+        $('.heart').addClass('logged');
     }
 
     $signUpBtn.on('click', () => {
